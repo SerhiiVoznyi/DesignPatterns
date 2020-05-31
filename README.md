@@ -9,7 +9,7 @@ You can install the last stable version of Ticketmaster.Discovery SDK using nuge
 ```
 PM> Install-Package Gof.DesignPatterns -Version 1.0.0
 ```
-For more details about package please visit [this](https://www.nuget.org/packages/Ticketmaster.Discovery/).
+For more details about package please visit [this](https://www.nuget.org/packages/Gof.DesignPatterns/).
 
 ## Overview
 
