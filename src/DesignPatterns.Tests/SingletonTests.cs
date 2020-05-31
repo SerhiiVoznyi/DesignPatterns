@@ -1,6 +1,7 @@
 ﻿namespace DesignPatterns.Tests
 {
     using DesignPatterns.Tests.Examples;
+    using DesignPatterns.Tests.Models;
     using Shouldly;
     using Xunit;
 
@@ -12,7 +13,10 @@
             var instance1 = new SingeltonExample().GetInstance();
             var instance2 = new SingeltonExample().GetInstance();
 
+            instance1.Company = new Company();
+
             instance1.ShouldBe(instance2);
+            instance2.Company.ShouldBe(instance1.Company);
         }
     }
 }
