@@ -1,5 +1,5 @@
-# GoF [Design Patterns](https://refactoring.guru/design-patterns)
-[![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/SerhiiVoznyi/DesignPatterns/blob/master/LICENSE.md)
+# GoF [Design Patterns](https://refactoring.guru/design-patterns) [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/SerhiiVoznyi/DesignPatterns/blob/master/LICENSE.md)
+
 Design Patterns can speed up the development process by providing tested, proven development paradigms.
 
 ## Installetion
