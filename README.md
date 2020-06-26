@@ -5,7 +5,7 @@ Design Patterns can speed up the development process by providing tested, proven
 ## Installetion
 [![NuGet](https://img.shields.io/badge/NuGet-v1.0.0-blue.svg)](https://www.nuget.org/packages/Gof.DesignPatterns/)
 
-You can install the last stable version of Ticketmaster.Discovery SDK using nuget.
+You can install the last stable version of Design Patterns using nuget.
 ```
 PM> Install-Package Gof.DesignPatterns -Version 1.0.0
 ```
