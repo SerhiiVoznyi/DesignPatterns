@@ -2,7 +2,7 @@
 
 Design Patterns can speed up the development process by providing tested, proven development paradigms.
 
-## Installetion
+## Installation
 [![NuGet](https://img.shields.io/badge/NuGet-v1.0.0-blue.svg)](https://www.nuget.org/packages/Gof.DesignPatterns/)
 
 You can install the last stable version of Design Patterns using nuget.
