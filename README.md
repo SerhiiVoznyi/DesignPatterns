@@ -1,13 +1,13 @@
-# GoF [Design Patterns](https://refactoring.guru/design-patterns) [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/SerhiiVoznyi/DesignPatterns/blob/master/LICENSE.md)
+# GoF [Design Patterns](https://refactoring.guru/design-patterns)
 
 Design Patterns can speed up the development process by providing tested, proven development paradigms.
 
 ## Installation
-[![NuGet](https://img.shields.io/badge/NuGet-v1.0.0-blue.svg)](https://www.nuget.org/packages/Gof.DesignPatterns/)
+[![NuGet](https://img.shields.io/badge/NuGet-v1.0.1-blue.svg)](https://www.nuget.org/packages/Gof.DesignPatterns/)
 
 You can install the last stable version of Design Patterns using nuget.
 ```
-PM> Install-Package Gof.DesignPatterns -Version 1.0.0
+PM> Install-Package Gof.DesignPatterns -Version 1.0.1
 ```
 For more details about package please visit [this](https://www.nuget.org/packages/Gof.DesignPatterns/).
 
