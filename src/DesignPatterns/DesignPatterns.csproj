@@ -6,7 +6,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Serhii Voznyi</Authors>
     <Product />
-    <Copyright>2020 Serhii Voznyi</Copyright>
+    <Copyright>2021 Serhii Voznyi</Copyright>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/SerhiiVoznyi/DesignPatterns</PackageProjectUrl>
     <PackageIcon>Logo.jpg</PackageIcon>
@@ -30,6 +30,7 @@ Behavioral design patterns are concerned with algorithms and the assignment of r
 * Strategy
 * Visitor</PackageReleaseNotes>
     <PackageId>Gof.DesignPatterns</PackageId>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>

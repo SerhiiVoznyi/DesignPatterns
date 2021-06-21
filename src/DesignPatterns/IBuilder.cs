@@ -1,4 +1,19 @@
-﻿namespace DesignPatterns
+﻿//   Copyright © 2021 Serhii Voznyi and open source community
+//
+//     https://www.linkedin.com/in/serhii-voznyi/
+//
+//   Licensed under the Apache License, Version 2.0 (the "License");
+//   you may not use this file except in compliance with the License.
+//   You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+//   Unless required by applicable law or agreed to in writing, software
+//   distributed under the License is distributed on an "AS IS" BASIS,
+//   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//   See the License for the specific language governing permissions and
+//   limitations under the License.
+namespace DesignPatterns
 {
     using System;
     using System.Collections.Generic;
@@ -58,13 +73,13 @@
 
         public virtual IDistributiveBuilder<TResult> AddMutation(Action<TResult> mutation)
         {
-            this._mutations.Add((mutation, false));
+            _mutations.Add((mutation, false));
             return this;
         }
 
         public virtual IDistributiveBuilder<TResult> AddMutation(Action<TResult> mutation, bool safely)
         {
-            this._mutations.Add((mutation, safely));
+            _mutations.Add((mutation, safely));
             return this;
         }
 
