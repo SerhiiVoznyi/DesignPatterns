@@ -1,4 +1,4 @@
-﻿//   Copyright © 2021 Serhii Voznyi and open source community
+﻿//   Copyright © 2023 Serhii Voznyi and open source community
 //
 //     https://www.linkedin.com/in/serhii-voznyi/
 //
@@ -13,44 +13,45 @@
 //   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
+
 namespace DesignPatterns
 {
     /// <summary>
-    /// Strategy is a behavioral [Design Pattern]
-    /// That turns a set of behaviors into objects
-    /// And makes them interchangeable inside original context object.
+    ///     Strategy is a behavioral [Design Pattern]
+    ///     That turns a set of behaviors into objects
+    ///     And makes them interchangeable inside original context object.
     /// </summary>
     public interface IStrategy
     {
         /// <summary>
-        /// Executes algorithm encapsulated in this strategy instance.
+        ///     Executes algorithm encapsulated in this strategy instance.
         /// </summary>
         void Execute();
     }
 
     /// <summary>
-    /// Strategy is a behavioral [Design Pattern]
-    /// That turns a set of behaviors into objects
-    /// And makes them interchangeable inside original context object.
+    ///     Strategy is a behavioral [Design Pattern]
+    ///     That turns a set of behaviors into objects
+    ///     And makes them interchangeable inside original context object.
     /// </summary>
     /// <typeparam name="TResult">The type of the result.</typeparam>
     public interface IStrategy<out TResult>
     {
         /// <summary>
-        /// Executes algorithm encapsulated in this strategy instance.
+        ///     Executes algorithm encapsulated in this strategy instance.
         /// </summary>
         TResult Execute();
     }
 
     /// <summary>
-    /// Strategy is a behavioral [Design Pattern]
-    /// That turns a set of behaviors into objects
-    /// And makes them interchangeable inside original context object.
+    ///     Strategy is a behavioral [Design Pattern]
+    ///     That turns a set of behaviors into objects
+    ///     And makes them interchangeable inside original context object.
     /// </summary>
     public interface IStrategy<out TResult, in TData>
     {
         /// <summary>
-        /// Executes algorithm encapsulated in this strategy instance.
+        ///     Executes algorithm encapsulated in this strategy instance.
         /// </summary>
         /// <param name="data">The data.</param>
         TResult Execute(TData data);

@@ -8,7 +8,7 @@
 
         protected TestBase()
         {
-            this.Fixture = new Fixture();
+            Fixture = new Fixture();
         }
     }
 }

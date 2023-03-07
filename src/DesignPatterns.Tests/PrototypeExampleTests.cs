@@ -26,6 +26,5 @@
             clone.Customers.ShouldNotBe(prototype.Customers);
             clone.Customers.FirstOrDefault().ShouldNotBe(prototype.Customers.FirstOrDefault());
         }
-
     }
 }

@@ -1,4 +1,4 @@
-﻿//   Copyright © 2021 Serhii Voznyi and open source community
+﻿//   Copyright © 2023 Serhii Voznyi and open source community
 //
 //     https://www.linkedin.com/in/serhii-voznyi/
 //
@@ -88,8 +88,7 @@ namespace DesignPatterns
             var result = new TResult();
             var verificationObject = new TResult();
 
-            foreach ((Action<TResult> Mutation, bool IsSafely) candidate in this._mutations)
-            {
+            foreach ((Action<TResult> Mutation, bool IsSafely) candidate in _mutations)
                 try
                 {
                     candidate.Mutation.Invoke(verificationObject);
@@ -97,12 +96,8 @@ namespace DesignPatterns
                 }
                 catch (Exception)
                 {
-                    if (!candidate.IsSafely)
-                    {
-                        throw;
-                    }
+                    if (!candidate.IsSafely) throw;
                 }
-            }
 
             return result;
         }

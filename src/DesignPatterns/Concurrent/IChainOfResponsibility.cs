@@ -1,4 +1,4 @@
-﻿//   Copyright © 2021 Serhii Voznyi and open source community
+﻿//   Copyright © 2023 Serhii Voznyi and open source community
 //
 //     https://www.linkedin.com/in/serhii-voznyi/
 //
@@ -58,13 +58,15 @@ namespace DesignPatterns.Concurrent
         : IChainOfResponsibility<TResult, TOperation>
     {
         /// <summary>
-        /// The next handler in the chain. 
+        ///     The next handler in the chain.
         /// </summary>
-        protected IChainOfResponsibility<TResult, TOperation> Next;
+        protected IChainOfResponsibility<TResult, TOperation>? Next;
 
         public virtual void RegisterNext<TImplementationType>(TImplementationType nextHandler)
             where TImplementationType : IChainOfResponsibility<TResult, TOperation>
-            => this.Next = nextHandler;
+        {
+            Next = nextHandler;
+        }
 
         public abstract Task<TResult> HandleAsync(TOperation operationData);
 
@@ -72,13 +74,10 @@ namespace DesignPatterns.Concurrent
         {
             var result = new List<Type>
             {
-                this.GetType(),
+                GetType()
             };
 
-            if (this.Next != null)
-            {
-                result.AddRange(this.Next.GetChainLinksTypes());
-            }
+            if (Next is not null) result.AddRange(Next.GetChainLinksTypes());
 
             return result;
         }

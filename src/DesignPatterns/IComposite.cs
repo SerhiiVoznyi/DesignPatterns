@@ -1,4 +1,4 @@
-﻿//   Copyright © 2021 Serhii Voznyi and open source community
+﻿//   Copyright © 2023 Serhii Voznyi and open source community
 //
 //     https://www.linkedin.com/in/serhii-voznyi/
 //
@@ -58,23 +58,29 @@ namespace DesignPatterns
     {
         protected readonly List<IComposite> CompositionTree;
 
-        protected CompositeBase() => this.CompositionTree = new List<IComposite>();
+        protected CompositeBase()
+        {
+            CompositionTree = new List<IComposite>();
+        }
 
         public virtual void Add(IComposite component)
         {
-            this.CompositionTree.Add(component);
+            CompositionTree.Add(component);
         }
 
         public virtual void Remove(IComposite component)
         {
-            this.CompositionTree.Remove(component);
+            CompositionTree.Remove(component);
         }
 
         public virtual void Clear()
         {
-            this.CompositionTree.Clear();
+            CompositionTree.Clear();
         }
 
-        public virtual bool IsComposite() => this.CompositionTree.Any();
+        public virtual bool IsComposite()
+        {
+            return CompositionTree.Any();
+        }
     }
 }

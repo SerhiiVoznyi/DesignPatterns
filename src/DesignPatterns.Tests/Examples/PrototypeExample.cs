@@ -9,8 +9,8 @@
     {
         public PrototypeExample()
         {
-            this.State = new ImmutableObject("First Time Object", new DateTime(2020, 1, 1));
-            this.Customers = new List<Customer>
+            State = new ImmutableObject("First Time Object", new DateTime(2020, 1, 1));
+            Customers = new List<Customer>
             {
                 new Customer
                 {
@@ -26,9 +26,9 @@
         [Obsolete]
         public PrototypeExample Clone()
         {
-            var clone = (PrototypeExample)this.MemberwiseClone();
+            var clone = (PrototypeExample)MemberwiseClone();
 
-            clone.State = new ImmutableObject(this.State.Name, this.State.PointInTime);
+            clone.State = new ImmutableObject(State.Name, State.PointInTime);
             clone.Customers = new List<Customer>();
             clone.Customers.AddRange(Customers.Select(s => new Customer
             {
@@ -38,7 +38,7 @@
             }));
             clone.Company = new Company
             {
-                Id = this.Company.Id,
+                Id = Company.Id,
                 CompanyName = string.Copy(Company.CompanyName),
                 Area = new Area
                 {

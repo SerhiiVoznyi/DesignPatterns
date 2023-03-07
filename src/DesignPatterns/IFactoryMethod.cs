@@ -1,4 +1,4 @@
-﻿//   Copyright © 2021 Serhii Voznyi and open source community
+﻿//   Copyright © 2023 Serhii Voznyi and open source community
 //
 //     https://www.linkedin.com/in/serhii-voznyi/
 //
@@ -13,20 +13,21 @@
 //   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
+
 namespace DesignPatterns
 {
     /// <summary>
-    /// Define an interface for creating an object, but let subclasses decide which class to instantiate.
-    /// Factory Method lets a class defer instantiation to subclasses.
+    ///     Define an interface for creating an object, but let subclasses decide which class to instantiate.
+    ///     Factory Method lets a class defer instantiation to subclasses.
     /// </summary>
     /// <typeparam name="TResult">The type of the result.</typeparam>
     public interface IFactoryMethod<out TResult>
     {
         /// <summary>
-        /// Instantiates this object
-        /// <see>
-        ///     <cref>{TResult}</cref>
-        /// </see>
+        ///     Instantiates this object
+        ///     <see>
+        ///         <cref>{TResult}</cref>
+        ///     </see>
         /// </summary>
         TResult Instantiate();
     }

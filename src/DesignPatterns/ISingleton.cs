@@ -1,4 +1,4 @@
-﻿//   Copyright © 2021 Serhii Voznyi and open source community
+﻿//   Copyright © 2023 Serhii Voznyi and open source community
 //
 //     https://www.linkedin.com/in/serhii-voznyi/
 //
@@ -13,29 +13,34 @@
 //   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
+
 namespace DesignPatterns
 {
     /// <summary>
-    /// The interface for implementation [Singleton] Design pattern.
-    /// It ensures that only one object of its kind exists and provides a single point of access to it for any other code.
+    ///     The interface for implementation [Singleton] Design pattern.
+    ///     It ensures that only one object of its kind exists and provides a single point of access to it for any other code.
     /// </summary>
     /// <typeparam name="TThis">The type of this.</typeparam>
     public interface ISingleton<out TThis>
     {
         /// <summary>
-        /// Gets the instance of type.
+        ///     Gets the instance of type.
         /// </summary>
         TThis GetInstance();
     }
 
     /// <summary>
-    /// The base implementation of [Singleton] Design pattern.
+    ///     The base implementation of [Singleton] Design pattern.
     /// </summary>
     /// <typeparam name="TThis">The type of the this.</typeparam>
     /// <seealso cref="DesignPatterns.ISingleton{TThis}" />
     public abstract class SingletonBase<TThis> : ISingleton<TThis> where TThis : new()
     {
         private static readonly TThis Instance = new TThis();
-        public TThis GetInstance() => Instance;
+
+        public TThis GetInstance()
+        {
+            return Instance;
+        }
     }
 }
