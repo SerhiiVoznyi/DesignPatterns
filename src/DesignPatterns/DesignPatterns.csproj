@@ -1,9 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 	
 	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
+		<TargetFrameworks>netstandard2.0;netstandard2.1;net5.0;net6.0</TargetFrameworks>
+		<LangVersion>11.0</LangVersion>
+		<Nullable>disable</Nullable>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<Authors>Serhii Voznyi</Authors>
 		<Product />
@@ -34,6 +34,10 @@
 			* Strategy
 			* Visitor
 		</PackageReleaseNotes>
+		<PackageId>Gof.DesignPatterns</PackageId>
+		<Version>1.0.4</Version>
+		<Title>Not only Gangs of Four Design Patterns</Title>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -44,6 +48,10 @@
 		<None Include="..\..\Logo.jpg">
 			<Pack>True</Pack>
 			<PackagePath></PackagePath>
+		</None>
+		<None Include="..\..\README.md">
+		  <Pack>True</Pack>
+		  <PackagePath>\</PackagePath>
 		</None>
 	</ItemGroup>
 	

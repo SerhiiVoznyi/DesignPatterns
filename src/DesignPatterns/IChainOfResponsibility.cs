@@ -61,7 +61,7 @@ namespace DesignPatterns
         /// <summary>
         ///     The next handler in the chain.
         /// </summary>
-        protected IChainOfResponsibility<TResult, TOperation>? Next;
+        protected IChainOfResponsibility<TResult, TOperation> Next;
 
         public virtual IEnumerable<Type> GetChainLinksTypes()
         {

@@ -60,7 +60,7 @@ namespace DesignPatterns.Concurrent
         /// <summary>
         ///     The next handler in the chain.
         /// </summary>
-        protected IChainOfResponsibility<TResult, TOperation>? Next;
+        protected IChainOfResponsibility<TResult, TOperation> Next;
 
         public virtual void RegisterNext<TImplementationType>(TImplementationType nextHandler)
             where TImplementationType : IChainOfResponsibility<TResult, TOperation>
@@ -77,7 +77,7 @@ namespace DesignPatterns.Concurrent
                 GetType()
             };
 
-            if (Next is not null) result.AddRange(Next.GetChainLinksTypes());
+            if (Next != null) result.AddRange(Next.GetChainLinksTypes());
 
             return result;
         }
