@@ -1,4 +1,4 @@
-﻿//   Copyright © 2023 Serhii Voznyi and open source community
+﻿//   Developed and Supported in 2024 by Serhii Voznyi and open source community
 //
 //     https://www.linkedin.com/in/serhii-voznyi/
 //

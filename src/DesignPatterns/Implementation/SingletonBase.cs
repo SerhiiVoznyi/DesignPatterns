@@ -13,21 +13,20 @@
 //   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
-namespace DesignPatterns.Concurrent
+namespace DesignPatterns.Implementation
 {
-    using System.Threading.Tasks;
-
     /// <summary>
-    /// Specify the kinds of objects to create using a prototypical instance, and create new objects by copying this prototype.
-    /// Co-opt one instance of a class for use as a breeder of all future instances.
-    /// The [new] operator considered harmful.
+    ///     The base implementation of [Singleton] Design pattern.
     /// </summary>
-    /// <typeparam name="TThis">The type of this object.</typeparam>
-    public interface IPrototype<TThis>
+    /// <typeparam name="TThis">The type of the this.</typeparam>
+    /// <seealso cref="DesignPatterns.ISingleton{TThis}" />
+    public abstract class SingletonBase<TThis> : ISingleton<TThis> where TThis : new()
     {
-        /// <summary>
-        /// Clones this asynchronously.
-        /// </summary>
-        Task<TThis> CloneAsync();
+        private static readonly TThis Instance = new TThis();
+
+        public TThis GetInstance()
+        {
+            return Instance;
+        }
     }
 }

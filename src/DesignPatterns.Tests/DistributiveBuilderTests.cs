@@ -1,6 +1,7 @@
 namespace DesignPatterns.Tests
 {
     using AutoFixture;
+    using DesignPatterns.Implementation;
     using DesignPatterns.Tests.Models;
     using Shouldly;
     using System;
