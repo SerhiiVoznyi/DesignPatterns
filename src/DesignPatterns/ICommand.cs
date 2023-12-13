@@ -1,4 +1,4 @@
-﻿//   Copyright © 2023 Serhii Voznyi and open source community
+﻿//   Developed and Supported in 2024 by Serhii Voznyi and open source community
 //
 //     https://www.linkedin.com/in/serhii-voznyi/
 //
@@ -13,7 +13,6 @@
 //   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
-
 namespace DesignPatterns
 {
     /// <summary>

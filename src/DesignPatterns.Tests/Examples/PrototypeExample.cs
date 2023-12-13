@@ -12,7 +12,7 @@
             State = new ImmutableObject("First Time Object", new DateTime(2020, 1, 1));
             Customers = new List<Customer>
             {
-                new Customer
+                new()
                 {
                     Id = Guid.NewGuid(),
                     Name = "Test Name",

@@ -1,4 +1,4 @@
-﻿//   Copyright © 2023 Serhii Voznyi and open source community
+﻿//   Developed and Supported in 2024 by Serhii Voznyi and open source community
 //
 //     https://www.linkedin.com/in/serhii-voznyi/
 //
@@ -16,7 +16,6 @@
 namespace DesignPatterns
 {
     using System;
-    using System.Collections.Generic;
 
     /// <summary>
     /// The classic interface for the [Builder] Design Pattern.
@@ -52,54 +51,5 @@ namespace DesignPatterns
         /// <param name="safely">if set to <c>true</c> [prevent execution if mutation throws an exception without interruption of execution of mutation chain]</param>
         /// <returns></returns>
         IDistributiveBuilder<TResult> AddMutation(Action<TResult> mutation, bool safely);
-    }
-
-    /// <summary>
-    /// The base implementation of <see cref="IDistributiveBuilder{TResult}"/> interface.
-    /// </summary>
-    /// <typeparam name="TResult">The type of the result.</typeparam>
-    /// <seealso cref="DesignPatterns.IDistributiveBuilder{TResult}" />
-    public class DistributiveBuilderBase<TResult> : IDistributiveBuilder<TResult> where TResult : new()
-    {
-        private readonly List<(Action<TResult> mutation, bool isSafely)> _mutations;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DistributiveBuilderBase{TResult}"/> class.
-        /// </summary>
-        public DistributiveBuilderBase()
-        {
-            _mutations = new List<(Action<TResult> mutation, bool isSafely)>();
-        }
-
-        public virtual IDistributiveBuilder<TResult> AddMutation(Action<TResult> mutation)
-        {
-            _mutations.Add((mutation, false));
-            return this;
-        }
-
-        public virtual IDistributiveBuilder<TResult> AddMutation(Action<TResult> mutation, bool safely)
-        {
-            _mutations.Add((mutation, safely));
-            return this;
-        }
-
-        public virtual TResult Build()
-        {
-            var result = new TResult();
-            var verificationObject = new TResult();
-
-            foreach ((Action<TResult> Mutation, bool IsSafely) candidate in _mutations)
-                try
-                {
-                    candidate.Mutation.Invoke(verificationObject);
-                    candidate.Mutation.Invoke(result);
-                }
-                catch (Exception)
-                {
-                    if (!candidate.IsSafely) throw;
-                }
-
-            return result;
-        }
     }
 }

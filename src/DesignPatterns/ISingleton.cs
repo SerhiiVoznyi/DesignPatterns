@@ -1,4 +1,4 @@
-﻿//   Copyright © 2023 Serhii Voznyi and open source community
+﻿//   Developed and Supported in 2024 by Serhii Voznyi and open source community
 //
 //     https://www.linkedin.com/in/serhii-voznyi/
 //
@@ -13,7 +13,6 @@
 //   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
-
 namespace DesignPatterns
 {
     /// <summary>
@@ -27,20 +26,5 @@ namespace DesignPatterns
         ///     Gets the instance of type.
         /// </summary>
         TThis GetInstance();
-    }
-
-    /// <summary>
-    ///     The base implementation of [Singleton] Design pattern.
-    /// </summary>
-    /// <typeparam name="TThis">The type of the this.</typeparam>
-    /// <seealso cref="DesignPatterns.ISingleton{TThis}" />
-    public abstract class SingletonBase<TThis> : ISingleton<TThis> where TThis : new()
-    {
-        private static readonly TThis Instance = new TThis();
-
-        public TThis GetInstance()
-        {
-            return Instance;
-        }
     }
 }
