@@ -1,4 +1,6 @@
-﻿namespace DesignPatterns.Tests
+﻿using System;
+
+namespace DesignPatterns.Tests
 {
     using DesignPatterns.Tests.Examples;
     using DesignPatterns.Tests.Models;
@@ -17,6 +19,13 @@
 
             instance1.ShouldBe(instance2);
             instance2.Company.ShouldBe(instance1.Company);
+        }
+
+        [Fact]
+        public void D()
+        {
+            var instance1 = DateTime.MinValue.ToString("O");
+            instance1.ShouldBe("");
         }
     }
 }
