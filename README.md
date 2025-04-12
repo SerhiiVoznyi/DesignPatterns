@@ -8,12 +8,12 @@ Code & Opinions expressed in this repository are solely my own and do not expres
 
 ## Installation
 
-[![NuGet](https://img.shields.io/badge/NuGet-v1.1.0-blue.svg)](https://www.nuget.org/packages/Gof.DesignPatterns/)
+[![NuGet](https://img.shields.io/badge/NuGet-v1.1.1-blue.svg)](https://www.nuget.org/packages/Gof.DesignPatterns/)
 
 You can install the last stable version of Design Patterns using nuget.
 
 ```C#
-PM> Install-Package Gof.DesignPatterns -Version 1.1.0
+PM> Install-Package Gof.DesignPatterns -Version 1.1.1
 ```
 
 For more details about package please visit [this](https://www.nuget.org/packages/Gof.DesignPatterns/).

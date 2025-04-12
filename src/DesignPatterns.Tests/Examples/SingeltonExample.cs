@@ -3,7 +3,7 @@
     using DesignPatterns.Implementation;
     using DesignPatterns.Tests.Models;
 
-    public class SingeltonExample : SingletonBase<CompositionRoot>
+    public class SingletonExample : SingletonBase<CompositionRoot>
     {
     }
 }
