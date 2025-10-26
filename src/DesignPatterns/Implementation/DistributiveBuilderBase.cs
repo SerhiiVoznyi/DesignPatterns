@@ -1,69 +1,107 @@
-﻿//   Developed and Supported in 2025 by Serhii Voznyi and open source community
+﻿// SPDX-License-Identifier: Apache-2.0
+// Copyright © 2020-2026 Serhii Voznyi and Contributors
 //
-//     https://www.linkedin.com/in/serhii-voznyi/
-//
-//   Licensed under the Apache License, Version 2.0 (the "License");
-//   you may not use this file except in compliance with the License.
-//   You may obtain a copy of the License at
-//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
 //     http://www.apache.org/licenses/LICENSE-2.0
-//
-//   Unless required by applicable law or agreed to in writing, software
-//   distributed under the License is distributed on an "AS IS" BASIS,
-//   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-//   See the License for the specific language governing permissions and
-//   limitations under the License.
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
 namespace DesignPatterns.Implementation
 {
     using System;
     using System.Collections.Generic;
 
     /// <summary>
-    /// The base implementation of <see cref="IDistributiveBuilder{TResult}"/> interface.
+    /// Base implementation of <see cref="IDistributiveBuilder{TResult}"/>.
+    /// Collects mutations and applies them to a new <typeparamref name="TResult"/> on <see cref="Build"/>.
     /// </summary>
-    /// <typeparam name="TResult">The type of the result.</typeparam>
-    /// <seealso cref="DesignPatterns.IDistributiveBuilder{TResult}" />
+    /// <typeparam name="TResult">The result type to build.</typeparam>
+    /// <remarks>
+    /// A mutation marked as <c>isSafe=true</c> is executed inside a try/catch.
+    /// If it throws, the exception is swallowed and the mutation is skipped.
+    /// Non-safe mutations propagate their exceptions.
+    /// This type is not thread-safe.
+    /// </remarks>
     public class DistributiveBuilderBase<TResult> : IDistributiveBuilder<TResult> where TResult : new()
     {
-        private readonly List<(Action<TResult> mutation, bool isSafely)> _mutations;
+        private readonly List<(Action<TResult> Action, bool IsSafe)> _mutations = new();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DistributiveBuilderBase{TResult}"/> class.
+        /// Adds a mutation to be applied during <see cref="Build"/>.
         /// </summary>
-        public DistributiveBuilderBase()
-        {
-            _mutations = new List<(Action<TResult> mutation, bool isSafely)>();
-        }
+        /// <param name="mutation">An action that mutates a <typeparamref name="TResult"/> instance.</param>
+        /// <returns>This builder instance for chaining.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="mutation"/> is <c>null</c>.</exception>
+        public virtual IDistributiveBuilder<TResult> AddMutation(Action<TResult> mutation) =>
+            AddMutation(mutation, isSafe: false);
 
-        public virtual IDistributiveBuilder<TResult> AddMutation(Action<TResult> mutation)
+        /// <summary>
+        /// Adds a mutation to be applied during <see cref="Build"/>.
+        /// </summary>
+        /// <param name="mutation">An action that mutates a <typeparamref name="TResult"/> instance.</param>
+        /// <param name="isSafe">
+        /// When <c>true</c>, exceptions thrown by <paramref name="mutation"/> are swallowed and the mutation is skipped.
+        /// When <c>false</c>, exceptions propagate to the caller of <see cref="Build"/>.
+        /// </param>
+        /// <returns>This builder instance for chaining.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="mutation"/> is <c>null</c>.</exception>
+        public virtual IDistributiveBuilder<TResult> AddMutation(Action<TResult> mutation, bool isSafe)
         {
-            _mutations.Add((mutation, false));
+            if (mutation is null) throw new ArgumentNullException(nameof(mutation));
+            _mutations.Add((mutation, isSafe));
             return this;
         }
 
-        public virtual IDistributiveBuilder<TResult> AddMutation(Action<TResult> mutation, bool safely)
+        /// <summary>
+        /// Clears all queued mutations.
+        /// </summary>
+        /// <returns>This builder instance for chaining.</returns>
+        public virtual IDistributiveBuilder<TResult> Clear()
         {
-            _mutations.Add((mutation, safely));
+            _mutations.Clear();
             return this;
         }
 
+        /// <summary>
+        /// Builds a new <typeparamref name="TResult"/> by applying queued mutations.
+        /// </summary>
+        /// <returns>A fully constructed <typeparamref name="TResult"/>.</returns>
+        /// <exception cref="Exception">
+        /// Re-throws any exception produced by a non-safe mutation.
+        /// </exception>
         public virtual TResult Build()
         {
-            var result = new TResult();
-            var verificationObject = new TResult();
+            var result = CreateInstance();
+            var probe = CreateInstance();
 
-            foreach ((Action<TResult> Mutation, bool IsSafely) candidate in _mutations)
+            foreach (var (action, isSafe) in _mutations)
+            {
                 try
                 {
-                    candidate.Mutation.Invoke(verificationObject);
-                    candidate.Mutation.Invoke(result);
+                    // Validate on a separate instance to detect failures without corrupting the result.
+                    action.Invoke(probe);
+
+                    // Apply only if the probe succeeded.
+                    action.Invoke(result);
                 }
-                catch (Exception)
+                catch (Exception) when (isSafe)
                 {
-                    if (!candidate.IsSafely) throw;
+                    // Skip this mutation when marked safe.
                 }
+            }
 
             return result;
         }
+
+        /// <summary>
+        /// Factory method for creating new instances of <typeparamref name="TResult"/>.
+        /// Override to customize instantiation.
+        /// </summary>
+        protected virtual TResult CreateInstance() => new TResult();
     }
 }

@@ -15,8 +15,6 @@
 //   limitations under the License.
 namespace DesignPatterns
 {
-    using System;
-
     /// <summary>
     /// The classic interface for the [Builder] Design Pattern.
     /// </summary>
@@ -27,29 +25,5 @@ namespace DesignPatterns
         /// Builds a object.
         /// </summary>
         TResult Build();
-    }
-
-    /// <summary>
-    /// The Distributive Builder Interface represents modified for
-    /// the [Builder] Design Pattern interface
-    /// with possibility to have ordered invocation list of mutations over target <see cref="TResult">type</see>.
-    /// </summary>
-    /// <typeparam name="TResult">The type of the result.</typeparam>
-    /// <seealso cref="DesignPatterns.IBuilder{TResult}" />
-    public interface IDistributiveBuilder<out TResult> : IBuilder<TResult>
-    {
-        /// <summary>
-        /// Adds a mutation function to invocation list.
-        /// </summary>
-        /// <param name="mutation">The mutation faction <see cref="Func{TResult}"/>.</param>
-        IDistributiveBuilder<TResult> AddMutation(Action<TResult> mutation);
-
-        /// <summary>
-        /// Adds the mutation.
-        /// </summary>
-        /// <param name="mutation">The mutation.</param>
-        /// <param name="safely">if set to <c>true</c> [prevent execution if mutation throws an exception without interruption of execution of mutation chain]</param>
-        /// <returns></returns>
-        IDistributiveBuilder<TResult> AddMutation(Action<TResult> mutation, bool safely);
     }
 }
