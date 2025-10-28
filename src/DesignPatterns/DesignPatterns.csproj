@@ -7,7 +7,7 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<Authors>Serhii Voznyi</Authors>
 		<Product />
-		<Copyright>2025 Serhii Voznyi</Copyright>
+		<Copyright>2020-2026 Serhii Voznyi</Copyright>
 		<PackageLicenseFile>LICENSE.md</PackageLicenseFile>
 		<PackageProjectUrl>https://github.com/SerhiiVoznyi/DesignPatterns</PackageProjectUrl>
 		<PackageIcon>Logo.jpg</PackageIcon>
@@ -35,7 +35,7 @@
 			* Visitor
 		</PackageReleaseNotes>
 		<PackageId>Gof.DesignPatterns</PackageId>
-		<Version>1.1.1</Version>
+		<Version>1.2.0</Version>
 		<Title>Not only Gangs of Four Design Patterns</Title>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
