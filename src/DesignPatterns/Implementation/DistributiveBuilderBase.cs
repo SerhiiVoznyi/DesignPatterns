@@ -1,4 +1,4 @@
-﻿//   Developed and Supported in 2025 by Serhii Voznyi and open source community
+//   Developed and Supported in 2025 by Serhii Voznyi and open source community
 //
 //     https://www.linkedin.com/in/serhii-voznyi/
 //
@@ -47,15 +47,22 @@ namespace DesignPatterns.Implementation
             return this;
         }
 
+        /// <summary>
+        /// Builds the result by applying all registered mutations in order.
+        /// Each mutation is first tested against a throwaway probe instance.
+        /// If the probe invocation throws and the mutation was registered with
+        /// <c>safely = true</c>, the mutation is skipped entirely for the real
+        /// result, preventing partial side-effects on the returned object.
+        /// </summary>
         public virtual TResult Build()
         {
             var result = new TResult();
-            var verificationObject = new TResult();
+            var probe = new TResult();
 
             foreach ((Action<TResult> Mutation, bool IsSafely) candidate in _mutations)
                 try
                 {
-                    candidate.Mutation.Invoke(verificationObject);
+                    candidate.Mutation.Invoke(probe);
                     candidate.Mutation.Invoke(result);
                 }
                 catch (Exception)

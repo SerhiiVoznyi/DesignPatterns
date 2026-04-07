@@ -1,4 +1,4 @@
-﻿//   Developed and Supported in 2025 by Serhii Voznyi and open source community
+//   Developed and Supported in 2025 by Serhii Voznyi and open source community
 //
 //     https://www.linkedin.com/in/serhii-voznyi/
 //
@@ -54,6 +54,6 @@ namespace DesignPatterns.Concurrent
         /// Executes this command asynchronously.
         /// </summary>
         /// <param name="executor">The executor on which depends this command.</param>
-        Task<TResult> Execute(TExecutor executor);
+        Task<TResult> ExecuteAsync(TExecutor executor);
     }
 }

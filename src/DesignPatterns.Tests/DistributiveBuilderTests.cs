@@ -49,7 +49,7 @@ namespace DesignPatterns.Tests
                 .AddMutation(root =>
                 {
                     root.Customers.Add(customerSkipped);
-                    throw new Exception("Test execution should not contain excretion.");
+                    throw new Exception("Test execution should not contain exception.");
                 }, true)
                 .AddMutation(root => root.Company.Area = area)
                 .Build();

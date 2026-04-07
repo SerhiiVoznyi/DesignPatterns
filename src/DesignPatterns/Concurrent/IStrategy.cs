@@ -1,4 +1,4 @@
-﻿//   Developed and Supported in 2025 by Serhii Voznyi and open source community
+//   Developed and Supported in 2025 by Serhii Voznyi and open source community
 //
 //     https://www.linkedin.com/in/serhii-voznyi/
 //
@@ -41,7 +41,7 @@ namespace DesignPatterns.Concurrent
         /// <summary>
         /// Executes algorithm encapsulated in this strategy instance asynchronously.
         /// </summary>
-        Task<TResult> Execute();
+        Task<TResult> ExecuteAsync();
     }
 
     /// <summary>
@@ -55,6 +55,6 @@ namespace DesignPatterns.Concurrent
         /// Executes algorithm encapsulated in this strategy instance asynchronously.
         /// </summary>
         /// <param name="data">The data.</param>
-        Task<TResult> Execute(TData data);
+        Task<TResult> ExecuteAsync(TData data);
     }
 }

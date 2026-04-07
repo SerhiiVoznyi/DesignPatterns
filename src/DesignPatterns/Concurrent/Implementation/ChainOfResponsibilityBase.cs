@@ -1,4 +1,4 @@
-﻿//   Developed and Supported in 2025 by Serhii Voznyi and open source community
+//   Developed and Supported in 2025 by Serhii Voznyi and open source community
 //
 //     https://www.linkedin.com/in/serhii-voznyi/
 //
@@ -24,14 +24,14 @@ namespace DesignPatterns.Concurrent.Implementation
     /// </summary>
     /// <typeparam name="TResult">The type of the result.</typeparam>
     /// <typeparam name="TOperation">The type of the operation.</typeparam>
-    /// <seealso cref="DesignPatterns.IChainOfResponsibility{TResult, TOperation}" />
+    /// <seealso cref="DesignPatterns.Concurrent.IChainOfResponsibility{TResult, TOperation}" />
     public abstract class ChainOfResponsibilityBase<TResult, TOperation>
         : IChainOfResponsibility<TResult, TOperation>
     {
         /// <summary>
         ///     The next handler in the chain.
         /// </summary>
-        protected IChainOfResponsibility<TResult, TOperation> Next;
+        protected IChainOfResponsibility<TResult, TOperation>? Next;
 
         public TImplementation AddNextHandler<TImplementation>(TImplementation nextHandler)
             where TImplementation : IChainOfResponsibility<TResult, TOperation>

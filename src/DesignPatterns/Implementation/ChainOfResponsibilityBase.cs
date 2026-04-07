@@ -1,4 +1,4 @@
-﻿//   Developed and Supported in 2025 by Serhii Voznyi and open source community
+//   Developed and Supported in 2025 by Serhii Voznyi and open source community
 //
 //     https://www.linkedin.com/in/serhii-voznyi/
 //
@@ -30,7 +30,7 @@ namespace DesignPatterns.Implementation
         /// <summary>
         ///     The next handler in the chain.
         /// </summary>
-        protected IChainOfResponsibility<TResult, TOperation> Next;
+        protected IChainOfResponsibility<TResult, TOperation>? Next;
 
         public virtual IEnumerable<Type> GetChainLinksTypes()
         {

@@ -1,4 +1,4 @@
-﻿//   Developed and Supported in 2025 by Serhii Voznyi and open source community
+//   Developed and Supported in 2025 by Serhii Voznyi and open source community
 //
 //     https://www.linkedin.com/in/serhii-voznyi/
 //
@@ -17,7 +17,19 @@ namespace DesignPatterns.Implementation
 {
     /// <summary>
     ///     The base implementation of [Singleton] Design pattern.
+    ///     Provides a shared static instance via <see cref="GetInstance"/>.
     /// </summary>
+    /// <remarks>
+    ///     <para>
+    ///     The <c>where TThis : new()</c> constraint requires a public parameterless constructor,
+    ///     which means the language cannot enforce single-instantiation at compile time.
+    ///     Consumers should treat <see cref="GetInstance"/> as the only intended entry point
+    ///     and avoid calling <c>new</c> directly on derived types.
+    ///     </para>
+    ///     <para>
+    ///     The static instance is initialized eagerly (thread-safe via .NET static field guarantees).
+    ///     </para>
+    /// </remarks>
     /// <typeparam name="TThis">The type of the this.</typeparam>
     /// <seealso cref="DesignPatterns.ISingleton{TThis}" />
     public abstract class SingletonBase<TThis> : ISingleton<TThis> where TThis : new()

@@ -1,4 +1,4 @@
-﻿//   Developed and Supported in 2025 by Serhii Voznyi and open source community
+//   Developed and Supported in 2025 by Serhii Voznyi and open source community
 //
 //     https://www.linkedin.com/in/serhii-voznyi/
 //
@@ -20,7 +20,7 @@ namespace DesignPatterns
 
     /// <summary>
     /// Composite is a structural [Design Pattern] that allows composing objects into a tree-like structure
-    /// and work with the it as if it was a singular object.
+    /// and work with it as if it was a singular object.
     /// </summary>
     public interface IComposite
     {

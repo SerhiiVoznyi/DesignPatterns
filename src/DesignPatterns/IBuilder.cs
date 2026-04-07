@@ -1,4 +1,4 @@
-﻿//   Developed and Supported in 2025 by Serhii Voznyi and open source community
+//   Developed and Supported in 2025 by Serhii Voznyi and open source community
 //
 //     https://www.linkedin.com/in/serhii-voznyi/
 //
@@ -24,7 +24,7 @@ namespace DesignPatterns
     public interface IBuilder<out TResult>
     {
         /// <summary>
-        /// Builds a object.
+        /// Builds an object.
         /// </summary>
         TResult Build();
     }
@@ -41,7 +41,7 @@ namespace DesignPatterns
         /// <summary>
         /// Adds a mutation function to invocation list.
         /// </summary>
-        /// <param name="mutation">The mutation faction <see cref="Func{TResult}"/>.</param>
+        /// <param name="mutation">The mutation function <see cref="Action{TResult}"/>.</param>
         IDistributiveBuilder<TResult> AddMutation(Action<TResult> mutation);
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace DesignPatterns
         /// </summary>
         /// <param name="mutation">The mutation.</param>
         /// <param name="safely">if set to <c>true</c> [prevent execution if mutation throws an exception without interruption of execution of mutation chain]</param>
-        /// <returns></returns>
+        /// <returns>The current builder instance for fluent chaining.</returns>
         IDistributiveBuilder<TResult> AddMutation(Action<TResult> mutation, bool safely);
     }
 }

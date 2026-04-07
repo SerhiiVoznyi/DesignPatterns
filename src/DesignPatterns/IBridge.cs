@@ -1,4 +1,4 @@
-﻿//   Developed and Supported in 2025 by Serhii Voznyi and open source community
+//   Developed and Supported in 2025 by Serhii Voznyi and open source community
 //
 //     https://www.linkedin.com/in/serhii-voznyi/
 //
@@ -22,14 +22,7 @@ namespace DesignPatterns
     public interface IBridge<out TImplementation>
     {
         /// <summary>
-        /// Gets the implementation
-        /// <see>
-        ///     <cref>{TImplementation}</cref>
-        /// </see>
-        /// for abstraction
-        /// <see>
-        ///     <cref>{TAbstraction}</cref>
-        /// </see>
+        /// Gets the <typeparamref name="TImplementation"/> implementer for this bridge abstraction.
         /// </summary>
         /// <value>
         /// The implementer.
