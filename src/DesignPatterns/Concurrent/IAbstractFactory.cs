@@ -1,4 +1,4 @@
-﻿//   Developed and Supported in 2025 by Serhii Voznyi and open source community
+//   Developed and Supported in 2025 by Serhii Voznyi and open source community
 //
 //     https://www.linkedin.com/in/serhii-voznyi/
 //
@@ -13,50 +13,49 @@
 //   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
-namespace DesignPatterns.Concurrent
+using System.Threading.Tasks;
+
+namespace DesignPatterns.Concurrent;
+
+/// <summary>
+/// The purpose of the [Abstract Factory] is to provide
+/// an interface for creating families of related objects.
+/// </summary>
+public interface IAbstractFactory
 {
-    using System.Threading.Tasks;
-
     /// <summary>
-    /// The purpose of the [Abstract Factory] is to provide
-    /// an interface for creating families of related objects.
-    /// </summary>
-    public interface IAbstractFactory
-    {
-        /// <summary>
-        /// Creates instance of related [object] or [family of objects] asynchronously.
-        /// </summary>
-        /// <typeparam name="TResult">The type of the result.</typeparam>
-        /// <typeparam name="TInput">The type of the input.</typeparam>
-        /// <param name="operationData">The operation data.</param>
-        /// <returns></returns>
-        Task<TResult> CreateAsync<TResult, TInput>(TInput operationData);
-    }
-
-    /// <summary>
-    /// The purpose of the [Abstract Factory] is to provide
-    /// an interface for creating families of related objects asynchronously.
-    /// </summary>
-    /// <typeparam name="TResult">The type of the result.</typeparam>
-    public interface IAbstractFactory<TResult>
-    {
-        /// <summary>
-        /// Creates instance of related [object] or [family of objects] asynchronously.
-        /// </summary>
-        Task<TResult> CreateAsync();
-    }
-
-    /// <summary>
-    /// The purpose of the [Abstract Factory] is to provide an interface for creating families of related objects.
+    /// Creates instance of related [object] or [family of objects] asynchronously.
     /// </summary>
     /// <typeparam name="TResult">The type of the result.</typeparam>
     /// <typeparam name="TInput">The type of the input.</typeparam>
-    public interface IAbstractFactory<TResult, in TInput>
-    {
-        /// <summary>
-        /// Creates instance of related [object] or [family of objects] asynchronously.
-        /// </summary>
-        /// <param name="operationData">The operation data.</param>
-        Task<TResult> CreateAsync(TInput operationData);
-    }
+    /// <param name="operationData">The operation data.</param>
+    /// <returns></returns>
+    Task<TResult> CreateAsync<TResult, TInput>(TInput operationData);
+}
+
+/// <summary>
+/// The purpose of the [Abstract Factory] is to provide
+/// an interface for creating families of related objects asynchronously.
+/// </summary>
+/// <typeparam name="TResult">The type of the result.</typeparam>
+public interface IAbstractFactory<TResult>
+{
+    /// <summary>
+    /// Creates instance of related [object] or [family of objects] asynchronously.
+    /// </summary>
+    Task<TResult> CreateAsync();
+}
+
+/// <summary>
+/// The purpose of the [Abstract Factory] is to provide an interface for creating families of related objects.
+/// </summary>
+/// <typeparam name="TResult">The type of the result.</typeparam>
+/// <typeparam name="TInput">The type of the input.</typeparam>
+public interface IAbstractFactory<TResult, in TInput>
+{
+    /// <summary>
+    /// Creates instance of related [object] or [family of objects] asynchronously.
+    /// </summary>
+    /// <param name="operationData">The operation data.</param>
+    Task<TResult> CreateAsync(TInput operationData);
 }

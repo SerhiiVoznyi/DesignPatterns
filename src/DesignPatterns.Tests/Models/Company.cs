@@ -1,9 +1,8 @@
-﻿namespace DesignPatterns.Tests.Models
+namespace DesignPatterns.Tests.Models;
+
+public class Company
 {
-    public class Company
-    {
-        public int Id { get; set; }
-        public string CompanyName { get; set; }
-        public Area Area { get; set; }
-    }
+    public int Id { get; set; }
+    public string CompanyName { get; set; }
+    public Area Area { get; set; }
 }

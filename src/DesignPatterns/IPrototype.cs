@@ -1,4 +1,4 @@
-﻿//   Developed and Supported in 2025 by Serhii Voznyi and open source community
+//   Developed and Supported in 2025 by Serhii Voznyi and open source community
 //
 //     https://www.linkedin.com/in/serhii-voznyi/
 //
@@ -13,16 +13,15 @@
 //   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
-namespace DesignPatterns
+namespace DesignPatterns;
+
+/// <summary>
+/// Specify the kinds of objects to create using a prototypical instance, and create new objects by copying this prototype.
+/// Co-opt one instance of a class for use as a breeder of all future instances.
+/// The [new] operator considered harmful.
+/// </summary>
+/// <typeparam name="TThis">The type of this object.</typeparam>
+public interface IPrototype<out TThis>
 {
-    /// <summary>
-    /// Specify the kinds of objects to create using a prototypical instance, and create new objects by copying this prototype.
-    /// Co-opt one instance of a class for use as a breeder of all future instances.
-    /// The [new] operator considered harmful.
-    /// </summary>
-    /// <typeparam name="TThis">The type of this object.</typeparam>
-    public interface IPrototype<out TThis>
-    {
-        TThis Clone();
-    }
+    TThis Clone();
 }

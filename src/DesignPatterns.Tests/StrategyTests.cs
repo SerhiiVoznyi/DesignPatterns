@@ -1,40 +1,39 @@
-namespace DesignPatterns.Tests
+using DesignPatterns.Tests.Examples;
+using Shouldly;
+using Xunit;
+
+namespace DesignPatterns.Tests;
+
+public class StrategyTests
 {
-    using DesignPatterns.Tests.Examples;
-    using Shouldly;
-    using Xunit;
-
-    public class StrategyTests
+    [Fact]
+    public void Execute_Should_ApplyUpperCaseStrategy()
     {
-        [Fact]
-        public void Execute_Should_ApplyUpperCaseStrategy()
-        {
-            IStrategy<string, string> strategy = new UpperCaseStrategy();
+        IStrategy<string, string> strategy = new UpperCaseStrategy();
 
-            var result = strategy.Execute("hello world");
+        var result = strategy.Execute("hello world");
 
-            result.ShouldBe("HELLO WORLD");
-        }
+        result.ShouldBe("HELLO WORLD");
+    }
 
-        [Fact]
-        public void Execute_Should_ApplyLowerCaseStrategy()
-        {
-            IStrategy<string, string> strategy = new LowerCaseStrategy();
+    [Fact]
+    public void Execute_Should_ApplyLowerCaseStrategy()
+    {
+        IStrategy<string, string> strategy = new LowerCaseStrategy();
 
-            var result = strategy.Execute("HELLO WORLD");
+        var result = strategy.Execute("HELLO WORLD");
 
-            result.ShouldBe("hello world");
-        }
+        result.ShouldBe("hello world");
+    }
 
-        [Fact]
-        public void Execute_Should_BeInterchangeable()
-        {
-            var input = "Hello World";
-            IStrategy<string, string> upper = new UpperCaseStrategy();
-            IStrategy<string, string> lower = new LowerCaseStrategy();
+    [Fact]
+    public void Execute_Should_BeInterchangeable()
+    {
+        var input = "Hello World";
+        IStrategy<string, string> upper = new UpperCaseStrategy();
+        IStrategy<string, string> lower = new LowerCaseStrategy();
 
-            upper.Execute(input).ShouldBe("HELLO WORLD");
-            lower.Execute(input).ShouldBe("hello world");
-        }
+        upper.Execute(input).ShouldBe("HELLO WORLD");
+        lower.Execute(input).ShouldBe("hello world");
     }
 }

@@ -1,46 +1,45 @@
-namespace DesignPatterns.Tests.Examples
+using DesignPatterns.Implementation;
+
+namespace DesignPatterns.Tests.Examples;
+
+public class PositiveNumberHandler : ChainOfResponsibilityBase<string, int>
 {
-    using DesignPatterns.Implementation;
-
-    public class PositiveNumberHandler : ChainOfResponsibilityBase<string, int>
+    public override string Handle(int operationData)
     {
-        public override string Handle(int operationData)
-        {
-            if (operationData > 0)
-                return "Positive";
+        if (operationData > 0)
+            return "Positive";
 
-            if (Next != null)
-                return Next.Handle(operationData);
+        if (Next != null)
+            return Next.Handle(operationData);
 
-            return "Unknown";
-        }
+        return "Unknown";
     }
+}
 
-    public class NegativeNumberHandler : ChainOfResponsibilityBase<string, int>
+public class NegativeNumberHandler : ChainOfResponsibilityBase<string, int>
+{
+    public override string Handle(int operationData)
     {
-        public override string Handle(int operationData)
-        {
-            if (operationData < 0)
-                return "Negative";
+        if (operationData < 0)
+            return "Negative";
 
-            if (Next != null)
-                return Next.Handle(operationData);
+        if (Next != null)
+            return Next.Handle(operationData);
 
-            return "Unknown";
-        }
+        return "Unknown";
     }
+}
 
-    public class ZeroNumberHandler : ChainOfResponsibilityBase<string, int>
+public class ZeroNumberHandler : ChainOfResponsibilityBase<string, int>
+{
+    public override string Handle(int operationData)
     {
-        public override string Handle(int operationData)
-        {
-            if (operationData == 0)
-                return "Zero";
+        if (operationData == 0)
+            return "Zero";
 
-            if (Next != null)
-                return Next.Handle(operationData);
+        if (Next != null)
+            return Next.Handle(operationData);
 
-            return "Unknown";
-        }
+        return "Unknown";
     }
 }

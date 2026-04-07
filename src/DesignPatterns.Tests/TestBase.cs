@@ -1,14 +1,13 @@
-﻿namespace DesignPatterns.Tests
+using AutoFixture;
+
+namespace DesignPatterns.Tests;
+
+public abstract class TestBase
 {
-    using AutoFixture;
+    protected readonly Fixture Fixture;
 
-    public abstract class TestBase
+    protected TestBase()
     {
-        protected readonly Fixture Fixture;
-
-        protected TestBase()
-        {
-            Fixture = new Fixture();
-        }
+        Fixture = new Fixture();
     }
 }

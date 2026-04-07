@@ -1,22 +1,21 @@
-namespace DesignPatterns.Tests.Examples
+using DesignPatterns.Tests.Models;
+using System.Collections.Generic;
+
+namespace DesignPatterns.Tests.Examples;
+
+public class AddCustomerCommand : ICommand<CompositionRoot, Customer>
 {
-    using DesignPatterns.Tests.Models;
-    using System.Collections.Generic;
+    private readonly CompositionRoot _root;
 
-    public class AddCustomerCommand : ICommand<CompositionRoot, Customer>
+    public AddCustomerCommand(CompositionRoot root)
     {
-        private readonly CompositionRoot _root;
+        _root = root;
+    }
 
-        public AddCustomerCommand(CompositionRoot root)
-        {
-            _root = root;
-        }
-
-        public CompositionRoot Execute(Customer executor)
-        {
-            _root.Customers ??= new List<Customer>();
-            _root.Customers.Add(executor);
-            return _root;
-        }
+    public CompositionRoot Execute(Customer executor)
+    {
+        _root.Customers ??= new List<Customer>();
+        _root.Customers.Add(executor);
+        return _root;
     }
 }

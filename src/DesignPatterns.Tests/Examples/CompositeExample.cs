@@ -1,12 +1,11 @@
-namespace DesignPatterns.Tests.Examples
-{
-    public class CompositeLeaf : CompositeBase
-    {
-        public string Name { get; }
+namespace DesignPatterns.Tests.Examples;
 
-        public CompositeLeaf(string name)
-        {
-            Name = name;
-        }
+public class CompositeLeaf : CompositeBase
+{
+    public string Name { get; }
+
+    public CompositeLeaf(string name)
+    {
+        Name = name;
     }
 }

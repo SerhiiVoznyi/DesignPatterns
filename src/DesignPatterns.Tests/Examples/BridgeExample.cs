@@ -1,14 +1,13 @@
-namespace DesignPatterns.Tests.Examples
+using DesignPatterns.Tests.Models;
+
+namespace DesignPatterns.Tests.Examples;
+
+public class CompanyBridge : IBridge<Company>
 {
-    using DesignPatterns.Tests.Models;
+    public Company Implementer { get; }
 
-    public class CompanyBridge : IBridge<Company>
+    public CompanyBridge(Company implementer)
     {
-        public Company Implementer { get; }
-
-        public CompanyBridge(Company implementer)
-        {
-            Implementer = implementer;
-        }
+        Implementer = implementer;
     }
 }

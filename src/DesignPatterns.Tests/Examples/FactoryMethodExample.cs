@@ -1,34 +1,33 @@
-﻿namespace DesignPatterns.Tests.Examples
-{
-    using DesignPatterns.Tests.Models;
-    using System;
-    using System.Collections.Generic;
+using DesignPatterns.Tests.Models;
+using System;
+using System.Collections.Generic;
 
-    public class FactoryMethodExample : IFactoryMethod<CompositionRoot>
-    {
-        public CompositionRoot Instantiate()
-            => new CompositionRoot
+namespace DesignPatterns.Tests.Examples;
+
+public class FactoryMethodExample : IFactoryMethod<CompositionRoot>
+{
+    public CompositionRoot Instantiate()
+        => new CompositionRoot
+        {
+            Company = new Company
             {
-                Company = new Company
+                Id = 1,
+                Area = new Area
                 {
                     Id = 1,
-                    Area = new Area
-                    {
-                        Id = 1,
-                        AreaCode = 1,
-                        AreaName = "Test Name"
-                    },
-                    CompanyName = "Test Company Name"
+                    AreaCode = 1,
+                    AreaName = "Test Name"
                 },
-                Customers = new List<Customer>
+                CompanyName = "Test Company Name"
+            },
+            Customers = new List<Customer>
+            {
+                new Customer
                 {
-                    new Customer
-                    {
-                        Id = Guid.NewGuid(),
-                        Name = "Test Customer Name",
-                        Birthdate = DateTime.Now
-                    }
+                    Id = Guid.NewGuid(),
+                    Name = "Test Customer Name",
+                    Birthdate = DateTime.Now
                 }
-            };
-    }
+            }
+        };
 }

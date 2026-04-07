@@ -1,16 +1,15 @@
-﻿namespace DesignPatterns.Tests.Models
+using System;
+
+namespace DesignPatterns.Tests.Models;
+
+public class ImmutableObject
 {
-    using System;
-
-    public class ImmutableObject
+    public ImmutableObject(string name, DateTime pointInTime)
     {
-        public ImmutableObject(string name, DateTime pointInTime)
-        {
-            Name = name;
-            PointInTime = pointInTime;
-        }
-
-        public string Name { get; protected set; }
-        public DateTime PointInTime { get; protected set; }
+        Name = name;
+        PointInTime = pointInTime;
     }
+
+    public string Name { get; protected set; }
+    public DateTime PointInTime { get; protected set; }
 }

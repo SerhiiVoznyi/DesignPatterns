@@ -1,16 +1,15 @@
-namespace DesignPatterns.Tests.Examples
-{
-    using DesignPatterns.Tests.Models;
+using DesignPatterns.Tests.Models;
 
-    public class CompanyFactory : IAbstractFactory<Company, string>
+namespace DesignPatterns.Tests.Examples;
+
+public class CompanyFactory : IAbstractFactory<Company, string>
+{
+    public Company Create(string operationData)
     {
-        public Company Create(string operationData)
+        return new Company
         {
-            return new Company
-            {
-                Id = operationData.GetHashCode(),
-                CompanyName = operationData
-            };
-        }
+            Id = operationData.GetHashCode(),
+            CompanyName = operationData
+        };
     }
 }
