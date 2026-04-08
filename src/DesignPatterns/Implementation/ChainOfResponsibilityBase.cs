@@ -1,4 +1,4 @@
-﻿//   Developed and Supported in 2025 by Serhii Voznyi and open source community
+//   Developed and Supported in 2025 by Serhii Voznyi and open source community
 //
 //     https://www.linkedin.com/in/serhii-voznyi/
 //
@@ -13,51 +13,47 @@
 //   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
-namespace DesignPatterns.Implementation
+using System;
+using System.Collections.Generic;
+
+namespace DesignPatterns.Implementation;
+
+/// <summary>
+///     The base implementation of Chain Of Responsibility.
+/// </summary>
+/// <typeparam name="TResult">The type of the result.</typeparam>
+/// <typeparam name="TOperation">The type of the operation.</typeparam>
+/// <seealso cref="DesignPatterns.IChainOfResponsibility{TResult, TOperation}" />
+public abstract class ChainOfResponsibilityBase<TResult, TOperation>
+    : IChainOfResponsibility<TResult, TOperation>
 {
-    using System;
-    using System.Collections.Generic;
-
     /// <summary>
-    ///     The base implementation of Chain Of Responsibility.
+    ///     The next handler in the chain.
     /// </summary>
-    /// <typeparam name="TResult">The type of the result.</typeparam>
-    /// <typeparam name="TOperation">The type of the operation.</typeparam>
-    /// <seealso cref="DesignPatterns.IChainOfResponsibility{TResult, TOperation}" />
-    public abstract class ChainOfResponsibilityBase<TResult, TOperation>
-        : IChainOfResponsibility<TResult, TOperation>
+    protected IChainOfResponsibility<TResult, TOperation>? Next;
+
+    public virtual IEnumerable<Type> GetChainLinksTypes()
     {
-        /// <summary>
-        ///     The next handler in the chain.
-        /// </summary>
-        protected IChainOfResponsibility<TResult, TOperation> Next;
+        List<Type> result = [GetType()];
 
-        public virtual IEnumerable<Type> GetChainLinksTypes()
-        {
-            var result = new List<Type>
-            {
-                GetType()
-            };
+        if (Next is not null) result.AddRange(Next.GetChainLinksTypes());
 
-            if (Next != null) result.AddRange(Next.GetChainLinksTypes());
+        return result;
+    }
 
-            return result;
-        }
-
-        public abstract TResult Handle(TOperation operationData);
+    public abstract TResult Handle(TOperation operationData);
 
 
-        public virtual void RegisterNext<TImplementationType>(TImplementationType nextHandler)
-            where TImplementationType : IChainOfResponsibility<TResult, TOperation>
-        {
-            Next = nextHandler;
-        }
+    public virtual void RegisterNext<TImplementationType>(TImplementationType nextHandler)
+        where TImplementationType : IChainOfResponsibility<TResult, TOperation>
+    {
+        Next = nextHandler;
+    }
 
-        public virtual TImplementation AddNextHandler<TImplementation>(TImplementation nextHandler)
-            where TImplementation : IChainOfResponsibility<TResult, TOperation>
-        {
-            RegisterNext(nextHandler);
-            return nextHandler;
-        }
+    public virtual TImplementation AddNextHandler<TImplementation>(TImplementation nextHandler)
+        where TImplementation : IChainOfResponsibility<TResult, TOperation>
+    {
+        RegisterNext(nextHandler);
+        return nextHandler;
     }
 }

@@ -1,4 +1,7 @@
-﻿
+# 🧩 GoF [Design Patterns](https://refactoring.guru/design-patterns)
+
+Design Patterns can speed up the development process by providing **tested, proven development paradigms** that help produce cleaner and more maintainable software.
+
 For more details about the package, please visit the [NuGet page](https://www.nuget.org/packages/Gof.DesignPatterns/).
 
 ---

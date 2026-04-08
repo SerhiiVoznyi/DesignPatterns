@@ -1,11 +1,10 @@
-﻿namespace DesignPatterns.Tests.Models
+using System.Collections.Generic;
+
+namespace DesignPatterns.Tests.Models;
+
+public class CompositionRoot
 {
-    using System.Collections.Generic;
+    public List<Customer> Customers { get; set; }
 
-    public class CompositionRoot
-    {
-        public List<Customer> Customers { get; set; }
-
-        public Company Company { get; set; }
-    }
+    public Company Company { get; set; }
 }

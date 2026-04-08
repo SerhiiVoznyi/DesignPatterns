@@ -1,4 +1,4 @@
-﻿//   Developed and Supported in 2025 by Serhii Voznyi and open source community
+//   Developed and Supported in 2025 by Serhii Voznyi and open source community
 //
 //     https://www.linkedin.com/in/serhii-voznyi/
 //
@@ -13,23 +13,22 @@
 //   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
-namespace DesignPatterns.Concurrent
-{
-    using System.Threading.Tasks;
+using System.Threading.Tasks;
 
+namespace DesignPatterns.Concurrent;
+
+/// <summary>
+/// Define an interface for creating an object, but let subclasses decide which class to instantiate.
+/// Factory Method lets a class defer instantiation to subclasses.
+/// </summary>
+/// <typeparam name="TResult">The type of the result.</typeparam>
+public interface IFactoryMethod<TResult>
+{
     /// <summary>
-    /// Define an interface for creating an object, but let subclasses decide which class to instantiate.
-    /// Factory Method lets a class defer instantiation to subclasses.
+    /// Instantiates this object asynchronously
+    /// <see>
+    ///     <cref>{TResult}</cref>
+    /// </see>
     /// </summary>
-    /// <typeparam name="TResult">The type of the result.</typeparam>
-    public interface IFactoryMethod<TResult>
-    {
-        /// <summary>
-        /// Instantiates this object asynchronously
-        /// <see>
-        ///     <cref>{TResult}</cref>
-        /// </see>
-        /// </summary>
-        Task<TResult> InstantiateAsync();
-    }
+    Task<TResult> InstantiateAsync();
 }

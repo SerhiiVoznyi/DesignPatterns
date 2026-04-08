@@ -1,4 +1,4 @@
-﻿//   Developed and Supported in 2025 by Serhii Voznyi and open source community
+//   Developed and Supported in 2025 by Serhii Voznyi and open source community
 //
 //     https://www.linkedin.com/in/serhii-voznyi/
 //
@@ -13,47 +13,46 @@
 //   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
-namespace DesignPatterns.Concurrent
+using System.Threading.Tasks;
+
+namespace DesignPatterns.Concurrent;
+
+/// <summary>
+/// Command is behavioral [Design Pattern] that converts requests
+/// or simple operations into objects.
+/// </summary>
+public interface ICommand
 {
-    using System.Threading.Tasks;
-
     /// <summary>
-    /// Command is behavioral [Design Pattern] that converts requests
-    /// or simple operations into objects.
+    /// Executes this command asynchronously.
     /// </summary>
-    public interface ICommand
-    {
-        /// <summary>
-        /// Executes this command asynchronously.
-        /// </summary>
-        Task ExecuteAsync();
-    }
+    Task ExecuteAsync();
+}
 
+/// <summary>
+/// Command is behavioral [Design Pattern] that converts requests
+/// or simple operations into objects.
+/// </summary>
+/// <typeparam name="TResult">The type of the result.</typeparam>
+public interface ICommand<TResult>
+{
     /// <summary>
-    /// Command is behavioral [Design Pattern] that converts requests
-    /// or simple operations into objects.
+    /// Executes this command asynchronously.
     /// </summary>
-    /// <typeparam name="TResult">The type of the result.</typeparam>
-    public interface ICommand<TResult>
-    {
-        /// <summary>
-        /// Executes this command asynchronously.
-        /// </summary>
-        Task<TResult> ExecuteAsync();
-    }
+    Task<TResult> ExecuteAsync();
+}
 
+/// <summary>
+/// Command is behavioral [Design Pattern] that converts requests
+/// or simple operations into objects.
+/// </summary>
+/// <typeparam name="TResult">The type of the result.</typeparam>
+/// <typeparam name="TExecutor">The type of the executor.</typeparam>
+public interface ICommand<TResult, in TExecutor>
+{
     /// <summary>
-    /// Command is behavioral [Design Pattern] that converts requests
-    /// or simple operations into objects.
+    /// Executes this command asynchronously.
     /// </summary>
-    /// <typeparam name="TResult">The type of the result.</typeparam>
-    /// <typeparam name="TExecutor">The type of the executor.</typeparam>
-    public interface ICommand<TResult, in TExecutor>
-    {
-        /// <summary>
-        /// Executes this command asynchronously.
-        /// </summary>
-        /// <param name="executor">The executor on which depends this command.</param>
-        Task<TResult> Execute(TExecutor executor);
-    }
+    /// <param name="executor">The executor on which depends this command.</param>
+    Task<TResult> ExecuteAsync(TExecutor executor);
 }

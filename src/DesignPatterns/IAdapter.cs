@@ -1,4 +1,4 @@
-﻿//   Developed and Supported in 2025 by Serhii Voznyi and open source community
+//   Developed and Supported in 2025 by Serhii Voznyi and open source community
 //
 //     https://www.linkedin.com/in/serhii-voznyi/
 //
@@ -13,17 +13,16 @@
 //   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
-namespace DesignPatterns
+namespace DesignPatterns;
+
+/// <summary>
+/// Adapter is a structural [Design Pattern], which allows incompatible objects to collaborate.
+/// The Adapter acts as a wrapper between two objects.
+/// It catches calls for one object and transforms them to format and interface recognizable by the second object.
+/// </summary>
+/// <typeparam name="TSource">The type of the source.</typeparam>
+/// <typeparam name="TResult">The type of the result.</typeparam>
+public interface IAdapter<in TSource, out TResult>
 {
-    /// <summary>
-    /// Adapter is a structural [Design Pattern], which allows incompatible objects to collaborate.
-    /// The Adapter acts as a wrapper between two objects.
-    /// It catches calls for one object and transforms them to format and interface recognizable by the second object.
-    /// </summary>
-    /// <typeparam name="TSource">The type of the source.</typeparam>
-    /// <typeparam name="TResult">The type of the result.</typeparam>
-    public interface IAdapter<in TSource, out TResult>
-    {
-        TResult Adapt(TSource source);
-    }
+    TResult Adapt(TSource source);
 }

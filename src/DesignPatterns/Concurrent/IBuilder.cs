@@ -1,4 +1,4 @@
-﻿//   Developed and Supported in 2025 by Serhii Voznyi and open source community
+//   Developed and Supported in 2025 by Serhii Voznyi and open source community
 //
 //     https://www.linkedin.com/in/serhii-voznyi/
 //
@@ -13,19 +13,18 @@
 //   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
-namespace DesignPatterns.Concurrent
-{
-    using System.Threading.Tasks;
+using System.Threading.Tasks;
 
+namespace DesignPatterns.Concurrent;
+
+/// <summary>
+/// The classic interface for the [Builder] Design Pattern.
+/// </summary>
+/// <typeparam name="TResult">The type of the result.</typeparam>
+public interface IBuilder<TResult>
+{
     /// <summary>
-    /// The classic interface for the [Builder] Design Pattern.
+    /// Builds a object asynchronously.
     /// </summary>
-    /// <typeparam name="TResult">The type of the result.</typeparam>
-    public interface IBuilder<TResult>
-    {
-        /// <summary>
-        /// Builds a object asynchronously.
-        /// </summary>
-        Task<TResult> BuildAsync();
-    }
+    Task<TResult> BuildAsync();
 }

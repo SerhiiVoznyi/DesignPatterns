@@ -1,4 +1,4 @@
-﻿//   Developed and Supported in 2025 by Serhii Voznyi and open source community
+//   Developed and Supported in 2025 by Serhii Voznyi and open source community
 //
 //     https://www.linkedin.com/in/serhii-voznyi/
 //
@@ -13,18 +13,17 @@
 //   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
-namespace DesignPatterns
+namespace DesignPatterns;
+
+/// <summary>
+///     The interface for implementation [Singleton] Design pattern.
+///     It ensures that only one object of its kind exists and provides a single point of access to it for any other code.
+/// </summary>
+/// <typeparam name="TThis">The type of this.</typeparam>
+public interface ISingleton<out TThis>
 {
     /// <summary>
-    ///     The interface for implementation [Singleton] Design pattern.
-    ///     It ensures that only one object of its kind exists and provides a single point of access to it for any other code.
+    ///     Gets the instance of type.
     /// </summary>
-    /// <typeparam name="TThis">The type of this.</typeparam>
-    public interface ISingleton<out TThis>
-    {
-        /// <summary>
-        ///     Gets the instance of type.
-        /// </summary>
-        TThis GetInstance();
-    }
+    TThis GetInstance();
 }

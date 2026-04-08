@@ -14,12 +14,12 @@ All work performed during its creation was done **in my spare/personal time**, d
 
 ## ⚙️ Installation
 
-[![NuGet](https://img.shields.io/badge/NuGet-v1.2.0-blue.svg)](https://www.nuget.org/packages/Gof.DesignPatterns/)
+[![NuGet](https://img.shields.io/badge/NuGet-v2.0.0-blue.svg)](https://www.nuget.org/packages/Gof.DesignPatterns/)
 
 You can install the latest stable version of **Gof.DesignPatterns** using NuGet:
 
 ```bash
-PM> Install-Package Gof.DesignPatterns -Version 1.2.0
+PM> Install-Package Gof.DesignPatterns -Version 2.0.0
 ```
 
 For more details about the package, please visit the [NuGet page](https://www.nuget.org/packages/Gof.DesignPatterns/).

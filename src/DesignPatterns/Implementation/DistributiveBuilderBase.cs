@@ -1,4 +1,4 @@
-﻿//   Developed and Supported in 2025 by Serhii Voznyi and open source community
+//   Developed and Supported in 2025 by Serhii Voznyi and open source community
 //
 //     https://www.linkedin.com/in/serhii-voznyi/
 //
@@ -13,57 +13,63 @@
 //   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
-namespace DesignPatterns.Implementation
+using System;
+using System.Collections.Generic;
+
+namespace DesignPatterns.Implementation;
+
+/// <summary>
+/// The base implementation of <see cref="IDistributiveBuilder{TResult}"/> interface.
+/// </summary>
+/// <typeparam name="TResult">The type of the result.</typeparam>
+/// <seealso cref="DesignPatterns.IDistributiveBuilder{TResult}" />
+public class DistributiveBuilderBase<TResult> : IDistributiveBuilder<TResult> where TResult : new()
 {
-    using System;
-    using System.Collections.Generic;
+    private readonly List<(Action<TResult> mutation, bool isSafely)> _mutations;
 
     /// <summary>
-    /// The base implementation of <see cref="IDistributiveBuilder{TResult}"/> interface.
+    /// Initializes a new instance of the <see cref="DistributiveBuilderBase{TResult}"/> class.
     /// </summary>
-    /// <typeparam name="TResult">The type of the result.</typeparam>
-    /// <seealso cref="DesignPatterns.IDistributiveBuilder{TResult}" />
-    public class DistributiveBuilderBase<TResult> : IDistributiveBuilder<TResult> where TResult : new()
+    public DistributiveBuilderBase()
     {
-        private readonly List<(Action<TResult> mutation, bool isSafely)> _mutations;
+        _mutations = [];
+    }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DistributiveBuilderBase{TResult}"/> class.
-        /// </summary>
-        public DistributiveBuilderBase()
-        {
-            _mutations = new List<(Action<TResult> mutation, bool isSafely)>();
-        }
+    public virtual IDistributiveBuilder<TResult> AddMutation(Action<TResult> mutation)
+    {
+        _mutations.Add((mutation, false));
+        return this;
+    }
 
-        public virtual IDistributiveBuilder<TResult> AddMutation(Action<TResult> mutation)
-        {
-            _mutations.Add((mutation, false));
-            return this;
-        }
+    public virtual IDistributiveBuilder<TResult> AddMutation(Action<TResult> mutation, bool safely)
+    {
+        _mutations.Add((mutation, safely));
+        return this;
+    }
 
-        public virtual IDistributiveBuilder<TResult> AddMutation(Action<TResult> mutation, bool safely)
-        {
-            _mutations.Add((mutation, safely));
-            return this;
-        }
+    /// <summary>
+    /// Builds the result by applying all registered mutations in order.
+    /// Each mutation is first tested against a throwaway probe instance.
+    /// If the probe invocation throws and the mutation was registered with
+    /// <c>safely = true</c>, the mutation is skipped entirely for the real
+    /// result, preventing partial side-effects on the returned object.
+    /// </summary>
+    public virtual TResult Build()
+    {
+        var result = new TResult();
+        var probe = new TResult();
 
-        public virtual TResult Build()
-        {
-            var result = new TResult();
-            var verificationObject = new TResult();
+        foreach ((Action<TResult> Mutation, bool IsSafely) candidate in _mutations)
+            try
+            {
+                candidate.Mutation.Invoke(probe);
+                candidate.Mutation.Invoke(result);
+            }
+            catch (Exception)
+            {
+                if (!candidate.IsSafely) throw;
+            }
 
-            foreach ((Action<TResult> Mutation, bool IsSafely) candidate in _mutations)
-                try
-                {
-                    candidate.Mutation.Invoke(verificationObject);
-                    candidate.Mutation.Invoke(result);
-                }
-                catch (Exception)
-                {
-                    if (!candidate.IsSafely) throw;
-                }
-
-            return result;
-        }
+        return result;
     }
 }

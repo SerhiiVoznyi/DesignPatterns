@@ -1,4 +1,4 @@
-﻿//   Developed and Supported in 2025 by Serhii Voznyi and open source community
+//   Developed and Supported in 2025 by Serhii Voznyi and open source community
 //
 //     https://www.linkedin.com/in/serhii-voznyi/
 //
@@ -13,43 +13,42 @@
 //   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
-namespace DesignPatterns
+using System;
+
+namespace DesignPatterns;
+
+/// <summary>
+/// The classic interface for the [Builder] Design Pattern.
+/// </summary>
+/// <typeparam name="TResult">The type of the result.</typeparam>
+public interface IBuilder<out TResult>
 {
-    using System;
+    /// <summary>
+    /// Builds an object.
+    /// </summary>
+    TResult Build();
+}
+
+/// <summary>
+/// The Distributive Builder Interface represents modified for
+/// the [Builder] Design Pattern interface
+/// with possibility to have ordered invocation list of mutations over target <see cref="TResult">type</see>.
+/// </summary>
+/// <typeparam name="TResult">The type of the result.</typeparam>
+/// <seealso cref="DesignPatterns.IBuilder{TResult}" />
+public interface IDistributiveBuilder<out TResult> : IBuilder<TResult>
+{
+    /// <summary>
+    /// Adds a mutation function to invocation list.
+    /// </summary>
+    /// <param name="mutation">The mutation function <see cref="Action{TResult}"/>.</param>
+    IDistributiveBuilder<TResult> AddMutation(Action<TResult> mutation);
 
     /// <summary>
-    /// The classic interface for the [Builder] Design Pattern.
+    /// Adds the mutation.
     /// </summary>
-    /// <typeparam name="TResult">The type of the result.</typeparam>
-    public interface IBuilder<out TResult>
-    {
-        /// <summary>
-        /// Builds a object.
-        /// </summary>
-        TResult Build();
-    }
-
-    /// <summary>
-    /// The Distributive Builder Interface represents modified for
-    /// the [Builder] Design Pattern interface
-    /// with possibility to have ordered invocation list of mutations over target <see cref="TResult">type</see>.
-    /// </summary>
-    /// <typeparam name="TResult">The type of the result.</typeparam>
-    /// <seealso cref="DesignPatterns.IBuilder{TResult}" />
-    public interface IDistributiveBuilder<out TResult> : IBuilder<TResult>
-    {
-        /// <summary>
-        /// Adds a mutation function to invocation list.
-        /// </summary>
-        /// <param name="mutation">The mutation faction <see cref="Func{TResult}"/>.</param>
-        IDistributiveBuilder<TResult> AddMutation(Action<TResult> mutation);
-
-        /// <summary>
-        /// Adds the mutation.
-        /// </summary>
-        /// <param name="mutation">The mutation.</param>
-        /// <param name="safely">if set to <c>true</c> [prevent execution if mutation throws an exception without interruption of execution of mutation chain]</param>
-        /// <returns></returns>
-        IDistributiveBuilder<TResult> AddMutation(Action<TResult> mutation, bool safely);
-    }
+    /// <param name="mutation">The mutation.</param>
+    /// <param name="safely">if set to <c>true</c> [prevent execution if mutation throws an exception without interruption of execution of mutation chain]</param>
+    /// <returns>The current builder instance for fluent chaining.</returns>
+    IDistributiveBuilder<TResult> AddMutation(Action<TResult> mutation, bool safely);
 }

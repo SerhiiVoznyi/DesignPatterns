@@ -1,4 +1,4 @@
-﻿//   Developed and Supported in 2025 by Serhii Voznyi and open source community
+//   Developed and Supported in 2025 by Serhii Voznyi and open source community
 //
 //     https://www.linkedin.com/in/serhii-voznyi/
 //
@@ -13,61 +13,60 @@
 //   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
-namespace DesignPatterns
+namespace DesignPatterns;
+
+/// <summary>
+///     The representation of Acceptor interface
+///     as part of implementation of [Visitor] [Design Pattern]
+/// </summary>
+public interface IAcceptor
 {
     /// <summary>
-    ///     The representation of Acceptor interface
-    ///     as part of implementation of [Visitor] [Design Pattern]
+    ///     Accepts the specified visitor.
     /// </summary>
-    public interface IAcceptor
-    {
-        /// <summary>
-        ///     Accepts the specified visitor.
-        /// </summary>
-        /// <param name="visitor">The visitor.</param>
-        void Accept(IVisitor visitor);
-    }
+    /// <param name="visitor">The visitor.</param>
+    void Accept(IVisitor visitor);
+}
 
+/// <summary>
+///     The representation of Acceptor interface
+///     as part of implementation of [Visitor] [Design Pattern]
+/// </summary>
+/// <typeparam name="TResult">The type of the result.</typeparam>
+public interface IAcceptor<TResult>
+{
     /// <summary>
-    ///     The representation of Acceptor interface
-    ///     as part of implementation of [Visitor] [Design Pattern]
+    ///     Accepts the specified visitor.
     /// </summary>
-    /// <typeparam name="TResult">The type of the result.</typeparam>
-    public interface IAcceptor<TResult>
-    {
-        /// <summary>
-        ///     Accepts the specified visitor.
-        /// </summary>
-        /// <param name="visitor">The visitor.</param>
-        TResult Accept(IVisitor<TResult> visitor);
-    }
+    /// <param name="visitor">The visitor.</param>
+    TResult Accept(IVisitor<TResult> visitor);
+}
 
+/// <summary>
+///     Visitor is a behavioral [Design Pattern] that allows adding
+///     new behaviors to existing class hierarchy without altering
+///     any existing code.
+/// </summary>
+public interface IVisitor
+{
     /// <summary>
-    ///     Visitor is a behavioral [Design Pattern] that allows adding
-    ///     new behaviors to existing class hierarchy without altering
-    ///     any existing code.
+    ///     Visits the specified acceptor.
     /// </summary>
-    public interface IVisitor
-    {
-        /// <summary>
-        ///     Visits the specified acceptor.
-        /// </summary>
-        /// <param name="acceptor">The acceptor.</param>
-        void Visit(IAcceptor acceptor);
-    }
+    /// <param name="acceptor">The acceptor.</param>
+    void Visit(IAcceptor acceptor);
+}
 
+/// <summary>
+///     Visitor is a behavioral [Design Pattern] that allows adding
+///     new behaviors to existing class hierarchy without altering
+///     any existing code.
+/// </summary>
+/// <typeparam name="TResult">The type of the result.</typeparam>
+public interface IVisitor<TResult>
+{
     /// <summary>
-    ///     Visitor is a behavioral [Design Pattern] that allows adding
-    ///     new behaviors to existing class hierarchy without altering
-    ///     any existing code.
+    ///     Visits the specified acceptor.
     /// </summary>
-    /// <typeparam name="TResult">The type of the result.</typeparam>
-    public interface IVisitor<TResult>
-    {
-        /// <summary>
-        ///     Visits the specified acceptor.
-        /// </summary>
-        /// <param name="acceptor">The acceptor.</param>
-        TResult Visit(IAcceptor<TResult> acceptor);
-    }
+    /// <param name="acceptor">The acceptor.</param>
+    TResult Visit(IAcceptor<TResult> acceptor);
 }
