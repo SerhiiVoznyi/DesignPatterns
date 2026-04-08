@@ -28,7 +28,7 @@ namespace DesignPatterns.Concurrent;
 public interface IChainOfResponsibility<TResult, TOperation>
 {
     /// <summary>
-    /// Registers the next.
+    /// Replaces the current successor in the chain (each handler has at most one next link).
     /// </summary>
     /// <typeparam name="TImplementation">The type of the implementation.</typeparam>
     /// <param name="nextHandler">The next handler.</param>

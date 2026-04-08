@@ -40,7 +40,8 @@ public interface IChainOfResponsibility<TResult, TOperation>
     TResult Handle(TOperation operationData);
 
     /// <summary>
-    ///     Registers the next.
+    ///     Replaces the current successor in the chain (each handler has at most one <c>Next</c>).
+    ///     To extend the chain, register the next handler on the handler instance returned by <see cref="AddNextHandler{TImplementation}" />.
     /// </summary>
     /// <typeparam name="TImplementation">The type of the implementation.</typeparam>
     /// <param name="nextHandler">The next handler.</param>

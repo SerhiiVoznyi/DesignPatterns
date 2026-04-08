@@ -1,19 +1,28 @@
-using AutoFixture;
 using DesignPatterns.Tests.Examples;
-using DesignPatterns.Tests.Models;
 using Shouldly;
 using Xunit;
 
 namespace DesignPatterns.Tests;
 
-public class BridgeTests : TestBase
+public class BridgeTests
 {
     [Fact]
-    public void Implementer_Should_ReturnProvidedImplementation()
+    public void Draw_Should_DelegateToSvgImplementor()
     {
-        var company = Fixture.Create<Company>();
-        var bridge = new CompanyBridge(company);
+        var bridge = new CircleBridge(new SvgRenderEngine(), radius: 5);
 
-        bridge.Implementer.ShouldBe(company);
+        var output = bridge.Draw();
+
+        output.ShouldBe("<circle r=\"5\" />");
+    }
+
+    [Fact]
+    public void Draw_Should_UseDifferentImplementor_WhenEngineChanges()
+    {
+        var svg = new CircleBridge(new SvgRenderEngine(), 2);
+        var canvas = new CircleBridge(new CanvasRenderEngine(), 2);
+
+        svg.Draw().ShouldContain("<circle");
+        canvas.Draw().ShouldContain("canvas.drawCircle");
     }
 }
