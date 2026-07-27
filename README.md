@@ -12,19 +12,23 @@ All work performed during its creation was done **in my spare/personal time**, d
 
 ---
 
+
+
 ## ⚙️ Installation
 
-[![NuGet](https://img.shields.io/badge/NuGet-v2.0.0-blue.svg)](https://www.nuget.org/packages/Gof.DesignPatterns/)
+[NuGet](https://www.nuget.org/packages/Gof.DesignPatterns/)
 
 You can install the latest stable version of **Gof.DesignPatterns** using NuGet:
 
 ```bash
-PM> Install-Package Gof.DesignPatterns -Version 2.0.0
+PM> Install-Package Gof.DesignPatterns -Version 2.0.1
 ```
 
 For more details about the package, please visit the [NuGet page](https://www.nuget.org/packages/Gof.DesignPatterns/).
 
 ---
+
+
 
 ## 🧠 Overview
 
@@ -34,6 +38,8 @@ It provides reusable, extensible examples of how to apply these patterns in mode
 The following GoF Design Pattern categories are included:
 
 ---
+
+
 
 ### 🏗️ [Creational](https://refactoring.guru/design-patterns/creational-patterns)
 
@@ -47,6 +53,8 @@ The following GoF Design Pattern categories are included:
 
 ---
 
+
+
 ### 🧱 [Structural](https://refactoring.guru/design-patterns/structural-patterns)
 
 > Structural patterns explain how to assemble objects and classes into larger structures while keeping these structures flexible and efficient.
@@ -56,6 +64,8 @@ The following GoF Design Pattern categories are included:
 - Composite
 
 ---
+
+
 
 ### 🔁 [Behavioral](https://refactoring.guru/design-patterns/behavioral-patterns)
 
@@ -68,12 +78,16 @@ The following GoF Design Pattern categories are included:
 
 ---
 
+
+
 ## 📚 Resources
 
 - 📘 [Refactoring.Guru – Design Patterns](https://refactoring.guru/design-patterns)
 - 🧩 [Design Patterns: Elements of Reusable Object-Oriented Software (GoF Book)](https://en.wikipedia.org/wiki/Design_Patterns)
 
 ---
+
+
 
 ## 💬 Contributing
 
@@ -82,9 +96,12 @@ If you want to improve existing implementations or add new examples, feel free t
 
 ---
 
+
+
 ## 🧾 License
 
 This project is distributed under the **MIT License**.  
 You are free to use it for personal or commercial purposes with proper attribution.
 
 ---
+
