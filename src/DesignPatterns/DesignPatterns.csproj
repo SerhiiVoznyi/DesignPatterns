@@ -35,7 +35,7 @@
 			* Visitor
 		</PackageReleaseNotes>
 		<PackageId>Gof.DesignPatterns</PackageId>
-		<Version>2.0.0</Version>
+		<Version>2.0.1</Version>
 		<Title>Not only Gangs of Four Design Patterns</Title>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
