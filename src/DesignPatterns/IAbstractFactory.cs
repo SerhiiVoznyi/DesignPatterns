@@ -43,7 +43,8 @@ public interface IAbstractFactory
     /// </summary>
     /// <typeparam name="TResult">The type of object to create.</typeparam>
     /// <typeparam name="TInput">The input type for the creation request.</typeparam>
-    /// <param name="operationData">Data consumed by the factory implementation.</param>
+    /// <param name="operationData">Data the factory consumes to configure or select the product.</param>
+    /// <returns>The created <typeparamref name="TResult" /> instance.</returns>
     TResult Create<TResult, TInput>(TInput operationData);
 }
 
@@ -54,12 +55,13 @@ public interface IAbstractFactory
 ///     For a full GoF-style <em>family</em>, define a dedicated interface with one method per product role
 ///     so consumers see all related creations together.
 /// </remarks>
-/// <typeparam name="TResult">The type of the result.</typeparam>
+/// <typeparam name="TResult">The type of product this factory creates.</typeparam>
 public interface IAbstractFactory<out TResult>
 {
     /// <summary>
     ///     Creates an instance of <typeparamref name="TResult" />.
     /// </summary>
+    /// <returns>The created <typeparamref name="TResult" /> instance.</returns>
     TResult Create();
 }
 
@@ -70,13 +72,14 @@ public interface IAbstractFactory<out TResult>
 ///     This shape models one product role per factory abstraction; combine multiple such interfaces—or one interface
 ///     with several methods—to express a coordinated family of related objects.
 /// </remarks>
-/// <typeparam name="TResult">The type of the result.</typeparam>
-/// <typeparam name="TInput">The type of the input.</typeparam>
+/// <typeparam name="TResult">The type of product this factory creates.</typeparam>
+/// <typeparam name="TInput">The type of creation data the factory consumes.</typeparam>
 public interface IAbstractFactory<out TResult, in TInput>
 {
     /// <summary>
     ///     Creates an instance of <typeparamref name="TResult" /> using <paramref name="operationData" />.
     /// </summary>
-    /// <param name="operationData">The operation data.</param>
+    /// <param name="operationData">Data the factory consumes to configure or select the product.</param>
+    /// <returns>The created <typeparamref name="TResult" /> instance.</returns>
     TResult Create(TInput operationData);
 }

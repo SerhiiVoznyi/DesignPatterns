@@ -16,12 +16,17 @@
 namespace DesignPatterns;
 
 /// <summary>
-/// Specify the kinds of objects to create using a prototypical instance, and create new objects by copying this prototype.
-/// Co-opt one instance of a class for use as a breeder of all future instances.
-/// The [new] operator considered harmful.
+///     Specify the kinds of objects to create using a prototypical instance, and create new objects by copying
+///     this prototype. Co-opt one instance of a class for use as a breeder of all future instances, treating the
+///     <c>new</c> operator as harmful.
 /// </summary>
-/// <typeparam name="TThis">The type of this object.</typeparam>
+/// <typeparam name="TThis">The type produced by cloning this prototype, normally the implementing type.</typeparam>
 public interface IPrototype<out TThis>
 {
+    /// <summary>
+    ///     Creates a new object by copying this prototype. The implementation decides whether the copy is
+    ///     shallow or deep.
+    /// </summary>
+    /// <returns>A new instance copied from this prototype.</returns>
     TThis Clone();
 }

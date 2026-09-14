@@ -4,7 +4,7 @@ name: gof-design-patterns
 type: skill
 status: reviewed
 version: 1.0.0
-last_reviewed: 2026-08-22
+last_reviewed: 2026-09-14
 tooling: agnostic
 package: Gof.DesignPatterns
 languages:
@@ -53,7 +53,7 @@ related:
 | Language | C# |
 | Namespaces | `DesignPatterns`, `DesignPatterns.Implementation`, `DesignPatterns.Concurrent` |
 | Docs | [README.md](README.md) |
-| Status | reviewed · v1.0.0 · 2026-08-22 |
+| Status | reviewed · v1.0.0 · 2026-09-14 |
 
 **Load this skill** when choosing or implementing one of the twelve shipped patterns. **Skip it** for unrelated C# work or unpublished GoF patterns (Observer, Decorator, and similar) unless the task is to extend the library.
 
@@ -89,7 +89,7 @@ related:
 | Prototype | `IPrototype<TThis>` |
 | Factory Method | `IFactoryMethod<TResult>` |
 | Singleton | `ISingleton<TThis>`, `SingletonBase<TThis>` |
-| Adapter | `IAdapter<TSource, TResult>` |
+| Adapter | `IAdapter<TResult>`, `IAdapter<TSource, TResult>` |
 | Bridge | `IBridge<TImplementation>` |
 | Composite | `IComposite`, `CompositeBase` |
 | Chain of Responsibility | `IChainOfResponsibility<TResult, TOperation>`, `ChainOfResponsibilityBase<TResult, TOperation>` |
@@ -104,6 +104,7 @@ Concurrent types live in `DesignPatterns.Concurrent` (and `DesignPatterns.Concur
 - **Abstract Factory:** generic interfaces model **one product role**. A GoF product *family* needs an explicit multi-method interface you define.
 - **Singleton:** `GetInstance()` is an **instance** method. `where TThis : new()` does **not** forbid `new TThis()`. Prefer `GetInstance()` as the access point. Do not use Singleton for services the host already manages with DI unless there is a clear reason.
 - **Chain of Responsibility:** `AddNextHandler` registers the next link and **returns that next handler**. `RegisterNext` replaces the current successor.
+- **Adapter:** `IAdapter<TSource, TResult>` adapts a **separate source** passed to `Adapt`. `IAdapter<TResult>` adapts the **implementing instance itself** and takes no argument.
 - Do not call members that are not on these types. Confirm against source or the README.
 
 ## Failure modes

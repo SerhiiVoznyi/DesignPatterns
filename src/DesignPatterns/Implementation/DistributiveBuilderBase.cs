@@ -21,7 +21,7 @@ namespace DesignPatterns.Implementation;
 /// <summary>
 /// The base implementation of <see cref="IDistributiveBuilder{TResult}"/> interface.
 /// </summary>
-/// <typeparam name="TResult">The type of the result.</typeparam>
+/// <typeparam name="TResult">The type of object this builder produces.</typeparam>
 /// <seealso cref="DesignPatterns.IDistributiveBuilder{TResult}" />
 public class DistributiveBuilderBase<TResult> : IDistributiveBuilder<TResult> where TResult : new()
 {
@@ -35,12 +35,14 @@ public class DistributiveBuilderBase<TResult> : IDistributiveBuilder<TResult> wh
         _mutations = [];
     }
 
+    /// <inheritdoc />
     public virtual IDistributiveBuilder<TResult> AddMutation(Action<TResult> mutation)
     {
         _mutations.Add((mutation, false));
         return this;
     }
 
+    /// <inheritdoc />
     public virtual IDistributiveBuilder<TResult> AddMutation(Action<TResult> mutation, bool safely)
     {
         _mutations.Add((mutation, safely));

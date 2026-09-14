@@ -18,13 +18,15 @@ using System.Threading.Tasks;
 namespace DesignPatterns.Concurrent;
 
 /// <summary>
-/// The classic interface for the [Builder] Design Pattern.
+///     Asynchronous counterpart of the classic Builder design pattern, which separates the construction of a
+///     complex object from its representation so that the same construction process can produce different results.
 /// </summary>
-/// <typeparam name="TResult">The type of the result.</typeparam>
+/// <typeparam name="TResult">The type of object this builder produces.</typeparam>
 public interface IBuilder<TResult>
 {
     /// <summary>
-    /// Builds a object asynchronously.
+    ///     Asynchronously builds the object described by the current builder state.
     /// </summary>
+    /// <returns>A task that produces the constructed <typeparamref name="TResult" /> instance.</returns>
     Task<TResult> BuildAsync();
 }

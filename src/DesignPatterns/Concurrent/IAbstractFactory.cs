@@ -41,19 +41,25 @@ public interface IAbstractFactory
     /// </summary>
     /// <typeparam name="TResult">The type of object to create.</typeparam>
     /// <typeparam name="TInput">The input type for the creation request.</typeparam>
-    /// <param name="operationData">Data consumed by the factory implementation.</param>
+    /// <param name="operationData">Data the factory consumes to configure or select the product.</param>
+    /// <returns>A task that produces the created <typeparamref name="TResult" /> instance.</returns>
     Task<TResult> CreateAsync<TResult, TInput>(TInput operationData);
 }
 
 /// <summary>
 ///     Asynchronously creates instances of <typeparamref name="TResult" /> with no input.
 /// </summary>
-/// <typeparam name="TResult">The type of the result.</typeparam>
+/// <remarks>
+///     For a full GoF-style <em>family</em>, define a dedicated interface with one method per product role
+///     so consumers see all related creations together.
+/// </remarks>
+/// <typeparam name="TResult">The type of product this factory creates.</typeparam>
 public interface IAbstractFactory<TResult>
 {
     /// <summary>
-    ///     Creates an instance of <typeparamref name="TResult" /> asynchronously.
+    ///     Asynchronously creates an instance of <typeparamref name="TResult" />.
     /// </summary>
+    /// <returns>A task that produces the created <typeparamref name="TResult" /> instance.</returns>
     Task<TResult> CreateAsync();
 }
 
@@ -63,13 +69,14 @@ public interface IAbstractFactory<TResult>
 /// <remarks>
 ///     One product role per interface; combine with other factory interfaces or multiple methods to model a full family.
 /// </remarks>
-/// <typeparam name="TResult">The type of the result.</typeparam>
-/// <typeparam name="TInput">The type of the input.</typeparam>
+/// <typeparam name="TResult">The type of product this factory creates.</typeparam>
+/// <typeparam name="TInput">The type of creation data the factory consumes.</typeparam>
 public interface IAbstractFactory<TResult, in TInput>
 {
     /// <summary>
-    ///     Creates an instance of <typeparamref name="TResult" /> using <paramref name="operationData" />.
+    ///     Asynchronously creates an instance of <typeparamref name="TResult" /> using <paramref name="operationData" />.
     /// </summary>
-    /// <param name="operationData">The operation data.</param>
+    /// <param name="operationData">Data the factory consumes to configure or select the product.</param>
+    /// <returns>A task that produces the created <typeparamref name="TResult" /> instance.</returns>
     Task<TResult> CreateAsync(TInput operationData);
 }

@@ -18,42 +18,44 @@ using System.Threading.Tasks;
 namespace DesignPatterns.Concurrent;
 
 /// <summary>
-/// Strategy is a behavioral [Design Pattern]
-/// That turns a set of behaviors into objects
-/// And makes them interchangeable inside original context object.
+///     Asynchronous counterpart of the Strategy behavioral design pattern, which turns a set of behaviors
+///     into objects and makes them interchangeable inside the original context object.
 /// </summary>
 public interface IStrategy
 {
     /// <summary>
-    /// Executes algorithm encapsulated in this strategy instance asynchronously.
+    ///     Asynchronously executes the algorithm encapsulated in this strategy instance.
     /// </summary>
+    /// <returns>A task that completes when the algorithm has finished.</returns>
     Task ExecuteAsync();
 }
 
 /// <summary>
-/// Strategy is a behavioral [Design Pattern]
-/// That turns a set of behaviors into objects
-/// And makes them interchangeable inside original context object.
+///     Asynchronous counterpart of the Strategy behavioral design pattern, which turns a set of behaviors
+///     into objects and makes them interchangeable inside the original context object.
 /// </summary>
-/// <typeparam name="TResult">The type of the result.</typeparam>
+/// <typeparam name="TResult">The type produced by the algorithm.</typeparam>
 public interface IStrategy<TResult>
 {
     /// <summary>
-    /// Executes algorithm encapsulated in this strategy instance asynchronously.
+    ///     Asynchronously executes the algorithm encapsulated in this strategy instance.
     /// </summary>
+    /// <returns>A task that produces the result of the algorithm.</returns>
     Task<TResult> ExecuteAsync();
 }
 
 /// <summary>
-/// Strategy is a behavioral [Design Pattern]
-/// That turns a set of behaviors into objects
-/// And makes them interchangeable inside original context object.
+///     Asynchronous counterpart of the Strategy behavioral design pattern, which turns a set of behaviors
+///     into objects and makes them interchangeable inside the original context object.
 /// </summary>
+/// <typeparam name="TResult">The type produced by the algorithm.</typeparam>
+/// <typeparam name="TData">The type of input the algorithm operates on.</typeparam>
 public interface IStrategy<TResult, in TData>
 {
     /// <summary>
-    /// Executes algorithm encapsulated in this strategy instance asynchronously.
+    ///     Asynchronously executes the algorithm encapsulated in this strategy instance over the supplied input.
     /// </summary>
-    /// <param name="data">The data.</param>
+    /// <param name="data">The input the algorithm operates on.</param>
+    /// <returns>A task that produces the result of the algorithm.</returns>
     Task<TResult> ExecuteAsync(TData data);
 }

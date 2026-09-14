@@ -16,14 +16,15 @@
 namespace DesignPatterns;
 
 /// <summary>
-///     The interface for implementation [Singleton] Design pattern.
+///     The interface for implementing the Singleton design pattern.
 ///     It ensures that only one object of its kind exists and provides a single point of access to it for any other code.
 /// </summary>
-/// <typeparam name="TThis">The type of this.</typeparam>
+/// <typeparam name="TThis">The singleton type whose shared instance is returned.</typeparam>
 public interface ISingleton<out TThis>
 {
     /// <summary>
-    ///     Gets the instance of type.
+    ///     Gets the single shared instance, which is the intended access point for the type.
     /// </summary>
+    /// <returns>The shared <typeparamref name="TThis" /> instance.</returns>
     TThis GetInstance();
 }

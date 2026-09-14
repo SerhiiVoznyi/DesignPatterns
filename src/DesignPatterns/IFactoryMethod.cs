@@ -19,14 +19,13 @@ namespace DesignPatterns;
 ///     Define an interface for creating an object, but let subclasses decide which class to instantiate.
 ///     Factory Method lets a class defer instantiation to subclasses.
 /// </summary>
-/// <typeparam name="TResult">The type of the result.</typeparam>
+/// <typeparam name="TResult">The type of object the factory method creates.</typeparam>
 public interface IFactoryMethod<out TResult>
 {
     /// <summary>
-    ///     Instantiates this object
-    ///     <see>
-    ///         <cref>{TResult}</cref>
-    ///     </see>
+    ///     Creates a new <typeparamref name="TResult" /> instance, letting the implementation decide
+    ///     which concrete type to instantiate.
     /// </summary>
+    /// <returns>The newly created <typeparamref name="TResult" /> instance.</returns>
     TResult Instantiate();
 }

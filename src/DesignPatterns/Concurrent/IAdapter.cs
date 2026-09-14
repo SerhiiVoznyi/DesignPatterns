@@ -18,17 +18,42 @@ using System.Threading.Tasks;
 namespace DesignPatterns.Concurrent;
 
 /// <summary>
-/// Adapter is a structural [Design Pattern], which allows incompatible objects to collaborate.
-/// The Adapter acts as a wrapper between two objects.
-/// It catches calls for one object and transforms them to format and interface recognizable by the second object.
+///     Asynchronous counterpart of the Adapter structural design pattern, which allows incompatible objects
+///     to collaborate. The adapter wraps one object and translates calls made against it into the format and
+///     interface that the collaborating object understands.
 /// </summary>
-/// <typeparam name="TSource">The type of the source.</typeparam>
-/// <typeparam name="TResult">The type of the result.</typeparam>
+/// <remarks>
+///     This shape is for adapters that are themselves the source: the implementing instance carries the data
+///     and converts itself into <typeparamref name="TResult" />. When the source is a separate object handed
+///     to the adapter, use <see cref="IAdapter{TSource,TResult}" /> instead.
+/// </remarks>
+/// <typeparam name="TResult">The type this adapter produces.</typeparam>
+public interface IAdapter<TResult>
+{
+    /// <summary>
+    ///     Asynchronously adapts this instance to <typeparamref name="TResult" />.
+    /// </summary>
+    /// <returns>A task that produces the adapted representation of this instance.</returns>
+    Task<TResult> AdaptAsync();
+}
+
+/// <summary>
+///     Asynchronous counterpart of the Adapter structural design pattern, which allows incompatible objects
+///     to collaborate. The adapter wraps one object and translates calls made against it into the format and
+///     interface that the collaborating object understands.
+/// </summary>
+/// <remarks>
+///     This shape converts a separate source object. When the adapter itself is the source, use
+///     <see cref="IAdapter{TResult}" /> instead.
+/// </remarks>
+/// <typeparam name="TSource">The type this adapter converts from.</typeparam>
+/// <typeparam name="TResult">The type this adapter produces.</typeparam>
 public interface IAdapter<in TSource, TResult>
 {
     /// <summary>
-    /// Adapts one type to another asynchronously.
+    ///     Asynchronously adapts <paramref name="source" /> to <typeparamref name="TResult" />.
     /// </summary>
-    /// <param name="source">The source.</param>
+    /// <param name="source">The object to adapt.</param>
+    /// <returns>A task that produces the adapted representation of <paramref name="source" />.</returns>
     Task<TResult> AdaptAsync(TSource source);
 }

@@ -20,10 +20,10 @@ using System.Threading.Tasks;
 namespace DesignPatterns.Concurrent.Implementation;
 
 /// <summary>
-/// The base implementation of Chain Of Responsibility.
+///     The base implementation of the asynchronous Chain Of Responsibility.
 /// </summary>
-/// <typeparam name="TResult">The type of the result.</typeparam>
-/// <typeparam name="TOperation">The type of the operation.</typeparam>
+/// <typeparam name="TResult">The type produced by handling an operation.</typeparam>
+/// <typeparam name="TOperation">The type of request passed along the chain.</typeparam>
 /// <seealso cref="DesignPatterns.Concurrent.IChainOfResponsibility{TResult, TOperation}" />
 public abstract class ChainOfResponsibilityBase<TResult, TOperation>
     : IChainOfResponsibility<TResult, TOperation>
@@ -33,6 +33,7 @@ public abstract class ChainOfResponsibilityBase<TResult, TOperation>
     /// </summary>
     protected IChainOfResponsibility<TResult, TOperation>? Next;
 
+    /// <inheritdoc />
     public TImplementation AddNextHandler<TImplementation>(TImplementation nextHandler)
         where TImplementation : IChainOfResponsibility<TResult, TOperation>
     {
@@ -40,6 +41,7 @@ public abstract class ChainOfResponsibilityBase<TResult, TOperation>
         return nextHandler;
     }
 
+    /// <inheritdoc />
     public virtual IEnumerable<Type> GetChainLinksTypes()
     {
         List<Type> result = [GetType()];
@@ -49,8 +51,10 @@ public abstract class ChainOfResponsibilityBase<TResult, TOperation>
         return result;
     }
 
+    /// <inheritdoc />
     public abstract Task<TResult> HandleAsync(TOperation operationData);
 
+    /// <inheritdoc />
     public virtual void RegisterNext<TImplementationType>(TImplementationType nextHandler)
         where TImplementationType : IChainOfResponsibility<TResult, TOperation>
     {

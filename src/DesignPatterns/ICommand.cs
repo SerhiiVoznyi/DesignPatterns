@@ -16,41 +16,43 @@
 namespace DesignPatterns;
 
 /// <summary>
-///     Command is behavioral [Design Pattern] that converts requests
-///     or simple operations into objects.
+///     Command is a behavioral design pattern that converts requests
+///     or simple operations into objects, so that they can be parameterized, queued or logged.
 /// </summary>
 public interface ICommand
 {
     /// <summary>
-    ///     Executes this command.
+    ///     Executes the request encapsulated by this command.
     /// </summary>
     void Execute();
 }
 
 /// <summary>
-///     Command is behavioral [Design Pattern] that converts requests
-///     or simple operations into objects.
+///     Command is a behavioral design pattern that converts requests
+///     or simple operations into objects, so that they can be parameterized, queued or logged.
 /// </summary>
-/// <typeparam name="TResult">The type of the result.</typeparam>
+/// <typeparam name="TResult">The type produced by executing this command.</typeparam>
 public interface ICommand<out TResult>
 {
     /// <summary>
-    ///     Executes this command.
+    ///     Executes the request encapsulated by this command.
     /// </summary>
+    /// <returns>The result of the execution.</returns>
     TResult Execute();
 }
 
 /// <summary>
-///     Command is behavioral [Design Pattern] that converts requests
-///     or simple operations into objects.
+///     Command is a behavioral design pattern that converts requests
+///     or simple operations into objects, so that they can be parameterized, queued or logged.
 /// </summary>
-/// <typeparam name="TResult">The type of the result.</typeparam>
-/// <typeparam name="TExecutor">The type of the executor.</typeparam>
+/// <typeparam name="TResult">The type produced by executing this command.</typeparam>
+/// <typeparam name="TExecutor">The type of the receiver the command acts upon.</typeparam>
 public interface ICommand<out TResult, in TExecutor>
 {
     /// <summary>
-    ///     Executes this command.
+    ///     Executes the request encapsulated by this command against the supplied executor.
     /// </summary>
-    /// <param name="executor">The executor on which depends this command.</param>
+    /// <param name="executor">The receiver this command depends on to carry out the request.</param>
+    /// <returns>The result of the execution.</returns>
     TResult Execute(TExecutor executor);
 }

@@ -18,17 +18,16 @@ using System.Threading.Tasks;
 namespace DesignPatterns.Concurrent;
 
 /// <summary>
-/// Define an interface for creating an object, but let subclasses decide which class to instantiate.
-/// Factory Method lets a class defer instantiation to subclasses.
+///     Define an interface for creating an object, but let subclasses decide which class to instantiate.
+///     Factory Method lets a class defer instantiation to subclasses.
 /// </summary>
-/// <typeparam name="TResult">The type of the result.</typeparam>
+/// <typeparam name="TResult">The type of object the factory method creates.</typeparam>
 public interface IFactoryMethod<TResult>
 {
     /// <summary>
-    /// Instantiates this object asynchronously
-    /// <see>
-    ///     <cref>{TResult}</cref>
-    /// </see>
+    ///     Asynchronously creates a new <typeparamref name="TResult" /> instance, letting the implementation
+    ///     decide which concrete type to instantiate.
     /// </summary>
+    /// <returns>A task that produces the newly created <typeparamref name="TResult" /> instance.</returns>
     Task<TResult> InstantiateAsync();
 }

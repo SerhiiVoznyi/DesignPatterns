@@ -40,16 +40,16 @@ Code and opinions in this repository are the author’s personal work, created i
 
 ## Installation
 
-Latest stable package: **Gof.DesignPatterns** 2.0.1 on [NuGet](https://www.nuget.org/packages/Gof.DesignPatterns/).
+Latest stable package: **Gof.DesignPatterns** 2.0.2 on [NuGet](https://www.nuget.org/packages/Gof.DesignPatterns/).
 
 ```bash
-dotnet add package Gof.DesignPatterns --version 2.0.1
+dotnet add package Gof.DesignPatterns --version 2.0.2
 ```
 
 Package Manager:
 
 ```powershell
-Install-Package Gof.DesignPatterns -Version 2.0.1
+Install-Package Gof.DesignPatterns -Version 2.0.2
 ```
 
 [↑ Back to Content](#content)
@@ -210,7 +210,7 @@ Structural patterns compose classes and objects into larger structures without m
 
 **Intent.** Convert one interface into another so otherwise incompatible types can work together.
 
-**In this library.** `IAdapter<TSource, TResult>.Adapt(TSource)`.
+**In this library.** `IAdapter<TSource, TResult>.Adapt(TSource)` converts a separate source object. `IAdapter<TResult>.Adapt()` is for the case where the implementing type *is* the source and adapts itself.
 
 ```csharp
 using DesignPatterns;
@@ -225,6 +225,23 @@ public sealed class CustomerToCompanyAdapter : IAdapter<Customer, Company>
 
 Company company = new CustomerToCompanyAdapter().Adapt(new Customer("Ada"));
 ```
+
+Self-adapting form:
+
+```csharp
+using DesignPatterns;
+
+public sealed class LegacyCustomer : IAdapter<Company>
+{
+    public required string Name { get; init; }
+
+    public Company Adapt() => new(Name);
+}
+
+Company adapted = new LegacyCustomer { Name = "Ada" }.Adapt();
+```
+
+The `DesignPatterns.Concurrent` namespace mirrors both shapes with `IAdapter<TResult>.AdaptAsync()` and `IAdapter<TSource, TResult>.AdaptAsync(TSource)`.
 
 [↑ Back to Content](#content)
 

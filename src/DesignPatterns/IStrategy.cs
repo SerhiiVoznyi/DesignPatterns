@@ -16,42 +16,43 @@
 namespace DesignPatterns;
 
 /// <summary>
-///     Strategy is a behavioral [Design Pattern]
-///     That turns a set of behaviors into objects
-///     And makes them interchangeable inside original context object.
+///     Strategy is a behavioral design pattern that turns a set of behaviors into objects
+///     and makes them interchangeable inside the original context object.
 /// </summary>
 public interface IStrategy
 {
     /// <summary>
-    ///     Executes algorithm encapsulated in this strategy instance.
+    ///     Executes the algorithm encapsulated in this strategy instance.
     /// </summary>
     void Execute();
 }
 
 /// <summary>
-///     Strategy is a behavioral [Design Pattern]
-///     That turns a set of behaviors into objects
-///     And makes them interchangeable inside original context object.
+///     Strategy is a behavioral design pattern that turns a set of behaviors into objects
+///     and makes them interchangeable inside the original context object.
 /// </summary>
-/// <typeparam name="TResult">The type of the result.</typeparam>
+/// <typeparam name="TResult">The type produced by the algorithm.</typeparam>
 public interface IStrategy<out TResult>
 {
     /// <summary>
-    ///     Executes algorithm encapsulated in this strategy instance.
+    ///     Executes the algorithm encapsulated in this strategy instance.
     /// </summary>
+    /// <returns>The result of the algorithm.</returns>
     TResult Execute();
 }
 
 /// <summary>
-///     Strategy is a behavioral [Design Pattern]
-///     That turns a set of behaviors into objects
-///     And makes them interchangeable inside original context object.
+///     Strategy is a behavioral design pattern that turns a set of behaviors into objects
+///     and makes them interchangeable inside the original context object.
 /// </summary>
+/// <typeparam name="TResult">The type produced by the algorithm.</typeparam>
+/// <typeparam name="TData">The type of input the algorithm operates on.</typeparam>
 public interface IStrategy<out TResult, in TData>
 {
     /// <summary>
-    ///     Executes algorithm encapsulated in this strategy instance.
+    ///     Executes the algorithm encapsulated in this strategy instance over the supplied input.
     /// </summary>
-    /// <param name="data">The data.</param>
+    /// <param name="data">The input the algorithm operates on.</param>
+    /// <returns>The result of the algorithm.</returns>
     TResult Execute(TData data);
 }

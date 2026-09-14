@@ -17,7 +17,11 @@
 			This library contains abstractions (Interfaces and Abstract classes) of design patterns which can have generic abstractions.
 		</Description>
 		<PackageReleaseNotes>
-			Were created abstractions for the next GoF Design Patterns:
+			2.0.2
+			* Added self-adapting Adapter abstractions: IAdapter&lt;TResult&gt;.Adapt() and DesignPatterns.Concurrent.IAdapter&lt;TResult&gt;.AdaptAsync(), for types that adapt themselves instead of a separate source object.
+			* Reviewed and corrected the XML documentation of every public interface and member, including malformed tags on the Factory Method and Builder abstractions, the previously undocumented IPrototype&lt;TThis&gt;.Clone(), missing type parameter and return descriptions, and inconsistencies between the synchronous and concurrent counterparts.
+
+			The package contains abstractions for the following GoF Design Patterns:
 			Creational patterns provide various object creation mechanisms, which increase flexibility and reuse of existing code.
 			* Abstract Factory
 			* Builder
@@ -35,7 +39,7 @@
 			* Visitor
 		</PackageReleaseNotes>
 		<PackageId>Gof.DesignPatterns</PackageId>
-		<Version>2.0.1</Version>
+		<Version>2.0.2</Version>
 		<Title>Not only Gangs of Four Design Patterns</Title>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>

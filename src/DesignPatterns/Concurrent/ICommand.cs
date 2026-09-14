@@ -18,41 +18,44 @@ using System.Threading.Tasks;
 namespace DesignPatterns.Concurrent;
 
 /// <summary>
-/// Command is behavioral [Design Pattern] that converts requests
-/// or simple operations into objects.
+///     Asynchronous counterpart of the Command behavioral design pattern, which converts requests
+///     or simple operations into objects, so that they can be parameterized, queued or logged.
 /// </summary>
 public interface ICommand
 {
     /// <summary>
-    /// Executes this command asynchronously.
+    ///     Asynchronously executes the request encapsulated by this command.
     /// </summary>
+    /// <returns>A task that completes when the execution has finished.</returns>
     Task ExecuteAsync();
 }
 
 /// <summary>
-/// Command is behavioral [Design Pattern] that converts requests
-/// or simple operations into objects.
+///     Asynchronous counterpart of the Command behavioral design pattern, which converts requests
+///     or simple operations into objects, so that they can be parameterized, queued or logged.
 /// </summary>
-/// <typeparam name="TResult">The type of the result.</typeparam>
+/// <typeparam name="TResult">The type produced by executing this command.</typeparam>
 public interface ICommand<TResult>
 {
     /// <summary>
-    /// Executes this command asynchronously.
+    ///     Asynchronously executes the request encapsulated by this command.
     /// </summary>
+    /// <returns>A task that produces the result of the execution.</returns>
     Task<TResult> ExecuteAsync();
 }
 
 /// <summary>
-/// Command is behavioral [Design Pattern] that converts requests
-/// or simple operations into objects.
+///     Asynchronous counterpart of the Command behavioral design pattern, which converts requests
+///     or simple operations into objects, so that they can be parameterized, queued or logged.
 /// </summary>
-/// <typeparam name="TResult">The type of the result.</typeparam>
-/// <typeparam name="TExecutor">The type of the executor.</typeparam>
+/// <typeparam name="TResult">The type produced by executing this command.</typeparam>
+/// <typeparam name="TExecutor">The type of the receiver the command acts upon.</typeparam>
 public interface ICommand<TResult, in TExecutor>
 {
     /// <summary>
-    /// Executes this command asynchronously.
+    ///     Asynchronously executes the request encapsulated by this command against the supplied executor.
     /// </summary>
-    /// <param name="executor">The executor on which depends this command.</param>
+    /// <param name="executor">The receiver this command depends on to carry out the request.</param>
+    /// <returns>A task that produces the result of the execution.</returns>
     Task<TResult> ExecuteAsync(TExecutor executor);
 }

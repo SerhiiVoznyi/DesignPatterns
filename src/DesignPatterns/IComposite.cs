@@ -19,65 +19,75 @@ using System.Linq;
 namespace DesignPatterns;
 
 /// <summary>
-/// Composite is a structural [Design Pattern] that allows composing objects into a tree-like structure
-/// and work with it as if it was a singular object.
+///     Composite is a structural design pattern that allows composing objects into a tree-like structure
+///     and treating the whole tree as if it were a single object.
 /// </summary>
 public interface IComposite
 {
     /// <summary>
-    /// Adds the specified component into internal composition tree.
+    ///     Adds the specified component to the internal composition tree.
     /// </summary>
-    /// <param name="component">The component.</param>
+    /// <param name="component">The child component to attach to this node.</param>
     void Add(IComposite component);
 
     /// <summary>
-    /// Removes the specified component from internal composition tree.
+    ///     Removes the specified component from the internal composition tree.
     /// </summary>
-    /// <param name="component">The component.</param>
+    /// <param name="component">The child component to detach from this node.</param>
     void Remove(IComposite component);
 
     /// <summary>
-    /// Clears this internal composition tree.
+    ///     Removes every component from the internal composition tree of this node.
     /// </summary>
     void Clear();
 
     /// <summary>
-    /// Determines whether this instance is composite.
+    ///     Determines whether this instance acts as a composite node rather than a leaf.
     /// </summary>
     /// <returns>
-    ///   <c>true</c> if this instance has components in internal composition tree; otherwise, <c>false</c>.
+    ///     <c>true</c> if this instance has components in its internal composition tree; otherwise, <c>false</c>.
     /// </returns>
     bool IsComposite();
 }
 
 /// <summary>
-/// The base implementation of the Composite [Design Pattern].
+///     The base implementation of the Composite design pattern, backed by an in-memory list of children.
 /// </summary>
 /// <seealso cref="DesignPatterns.IComposite" />
 public abstract class CompositeBase : IComposite
 {
+    /// <summary>
+    ///     The child components attached to this node.
+    /// </summary>
     protected readonly List<IComposite> CompositionTree;
 
+    /// <summary>
+    ///     Initializes a new instance of the <see cref="CompositeBase" /> class with an empty composition tree.
+    /// </summary>
     protected CompositeBase()
     {
         CompositionTree = [];
     }
 
+    /// <inheritdoc />
     public virtual void Add(IComposite component)
     {
         CompositionTree.Add(component);
     }
 
+    /// <inheritdoc />
     public virtual void Remove(IComposite component)
     {
         CompositionTree.Remove(component);
     }
 
+    /// <inheritdoc />
     public virtual void Clear()
     {
         CompositionTree.Clear();
     }
 
+    /// <inheritdoc />
     public virtual bool IsComposite()
     {
         return CompositionTree.Any();

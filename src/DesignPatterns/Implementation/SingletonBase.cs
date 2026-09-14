@@ -16,8 +16,8 @@
 namespace DesignPatterns.Implementation;
 
 /// <summary>
-///     The base implementation of [Singleton] Design pattern.
-///     Provides a shared static instance via <see cref="GetInstance"/>.
+///     The base implementation of the Singleton design pattern.
+///     Provides a shared static instance via <see cref="GetInstance" />.
 /// </summary>
 /// <remarks>
 ///     <para>
@@ -30,12 +30,13 @@ namespace DesignPatterns.Implementation;
 ///     The static instance is initialized eagerly (thread-safe via .NET static field guarantees).
 ///     </para>
 /// </remarks>
-/// <typeparam name="TThis">The type of the this.</typeparam>
+/// <typeparam name="TThis">The singleton type whose shared instance is returned.</typeparam>
 /// <seealso cref="DesignPatterns.ISingleton{TThis}" />
 public abstract class SingletonBase<TThis> : ISingleton<TThis> where TThis : new()
 {
     private static readonly TThis Instance = new TThis();
 
+    /// <inheritdoc />
     public TThis GetInstance()
     {
         return Instance;
