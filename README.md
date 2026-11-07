@@ -1,4 +1,4 @@
-# Gof.DesignPatterns
+# ![GoF Design Patterns](.assets/cover.png)
 
 [Gof.DesignPatterns](https://www.nuget.org/packages/Gof.DesignPatterns/) is a .NET class library of **generic abstractions** for a subset of the Gang of Four (GoF) design patterns — those that can be expressed as reusable interfaces (and a few abstract bases).
 
@@ -8,6 +8,7 @@ The package is intended to speed up application code by giving you a shared voca
 
 ## Content
 
+- [Content](#content)
 - [Disclaimer](#disclaimer)
 - [Installation](#installation)
 - [What this library provides](#what-this-library-provides)
@@ -56,11 +57,11 @@ Install-Package Gof.DesignPatterns -Version 2.0.2
 
 ## What this library provides
 
-| Surface | Role |
-| --- | --- |
-| `DesignPatterns` | Synchronous interfaces (`IStrategy`, `IAdapter`, …) |
+| Surface                         | Role                                                                                                                              |
+| ------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `DesignPatterns`                | Synchronous interfaces (`IStrategy`, `IAdapter`, …)                                                                               |
 | `DesignPatterns.Implementation` | Shared bases: `SingletonBase<T>`, `DistributiveBuilderBase<T>`, `CompositeBase`, `ChainOfResponsibilityBase<TResult, TOperation>` |
-| `DesignPatterns.Concurrent` | Async counterparts (`ExecuteAsync` / `HandleAsync` / `Task`-based APIs) |
+| `DesignPatterns.Concurrent`     | Async counterparts (`ExecuteAsync` / `HandleAsync` / `Task`-based APIs)                                                           |
 
 **Included patterns**
 
@@ -82,7 +83,7 @@ Creational patterns isolate how objects are created so callers depend on contrac
 
 ### Abstract Factory
 
-**Intent.** Provide an interface for creating objects without binding callers to concrete types. In the GoF book, a factory typically exposes several methods that create a *family* of related products.
+**Intent.** Provide an interface for creating objects without binding callers to concrete types. In the GoF book, a factory typically exposes several methods that create a _family_ of related products.
 
 **In this library.** `IAbstractFactory<TResult>` and `IAbstractFactory<TResult, TInput>` model **one product role** per interface. The non-generic `IAbstractFactory.Create<TResult, TInput>` is a type-parameterized factory: the caller chooses both types at the call site. For a textbook family (for example `CreateButton()` + `CreateScrollBar()`), define your own interface with one member per product.
 
@@ -210,7 +211,7 @@ Structural patterns compose classes and objects into larger structures without m
 
 **Intent.** Convert one interface into another so otherwise incompatible types can work together.
 
-**In this library.** `IAdapter<TSource, TResult>.Adapt(TSource)` converts a separate source object. `IAdapter<TResult>.Adapt()` is for the case where the implementing type *is* the source and adapts itself.
+**In this library.** `IAdapter<TSource, TResult>.Adapt(TSource)` converts a separate source object. `IAdapter<TResult>.Adapt()` is for the case where the implementing type _is_ the source and adapts itself.
 
 ```csharp
 using DesignPatterns;
